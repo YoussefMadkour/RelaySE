@@ -184,7 +184,6 @@
         font-size: 22px;
         color: var(--accent);
         letter-spacing: 0.04em;
-        margin-bottom: 50px;
       }
       .statement-text {
         font-size: 68px;
@@ -230,6 +229,40 @@
         color: var(--accent);
       }
 
+      /* ---- Scene B: orchestrator + app list ---- */
+      .app-title {
+        font-size: 66px;
+        font-weight: 900;
+        color: var(--fg);
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+      .app-subtitle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 28px;
+        color: var(--accent);
+        letter-spacing: 0.06em;
+        margin-bottom: 56px;
+      }
+      .app-grid {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        max-width: 1500px;
+        margin: 0 auto;
+      }
+      .app-pill {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--fg);
+        background: rgba(238, 243, 247, 0.06);
+        border: 2px solid rgba(238, 243, 247, 0.16);
+        border-radius: 14px;
+        padding: 22px 34px;
+      }
+
       .video-label {
         position: absolute;
         top: 90px;
@@ -269,93 +302,110 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="120"
+      data-duration="104"
       data-width="1920"
       data-height="1080"
     >
-      <!-- ============ SCENE 1: Problem + title (0 - 14.5) ============ -->
-      <section id="scene-1" class="scene clip" data-start="0" data-duration="14.5" data-track-index="1">
-        <div id="scene-1-inner" class="scene-inner statement-scene">
-          <div class="glow" id="glow-1" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
+      <!-- ============ SCENE A: The problem (0 - 10.6) ============ -->
+      <section id="scene-a" class="scene clip" data-start="0" data-duration="10.6" data-track-index="1">
+        <div id="scene-a-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-a" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
           <div class="grid-lines"></div>
           <div class="statement-inner">
-            <div class="quote-text" id="quote-1">
+            <div class="quote-text" id="quote-a">
               &ldquo;I definitely want to understand whether you integrate with SAP... I just need to
               know rather than seeing something in a demo that turns out to be roadmap.&rdquo;
             </div>
-            <div class="quote-attribution">— Jane, real discovery call transcript</div>
-            <div class="statement-text" id="title-1">Verified Discovery-to-Demo Agent</div>
+            <div class="quote-attribution" id="quote-attribution">— Jane, real discovery call transcript</div>
           </div>
         </div>
+        <audio id="audio-a" src="assets/narration/n1.wav" data-start="0.6" data-duration="9.1" data-media-start="0" data-track-index="10"></audio>
       </section>
 
-      <!-- ============ SCENE 2: Requirements verification (14 - 34.5) ============ -->
-      <section id="scene-2" class="scene clip" data-start="14.0" data-duration="20.5" data-track-index="1">
-        <div id="scene-2-inner" class="scene-inner content-scene">
-          <div class="glow" id="glow-2" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
+      <!-- ============ SCENE B: Orchestrator + 6 real apps (10.1 - 24.2) ============ -->
+      <section id="scene-b" class="scene" data-track-index="1">
+        <div id="scene-b-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-b" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
+          <div class="grid-lines"></div>
+          <div class="statement-inner">
+            <div class="app-title">Verified Discovery-to-Demo Agent</div>
+            <div class="app-subtitle" id="app-subtitle-b">One orchestrator. Six real apps.</div>
+            <div class="app-grid">
+              <div class="app-pill" id="pill-1">HubSpot</div>
+              <div class="app-pill" id="pill-2">Google Drive</div>
+              <div class="app-pill" id="pill-3">Plane</div>
+              <div class="app-pill" id="pill-4">Slack</div>
+              <div class="app-pill" id="pill-5">Gmail</div>
+              <div class="app-pill" id="pill-6">Calendar</div>
+            </div>
+          </div>
+        </div>
+        <audio id="audio-b" data-start="10.7" data-duration="12.6" data-media-start="0" data-track-index="10" src="assets/narration/n2.wav"></audio>
+      </section>
+
+      <!-- ============ SCENE C: Extract + verify (23.7 - 43.9) ============ -->
+      <section id="scene-c" class="scene" data-track-index="1">
+        <div id="scene-c-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-c" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
           <div class="grid-lines"></div>
           <div class="copy-col">
             <div class="eyebrow" data-layout-allow-overlap>Step 1</div>
-            <div class="rule" id="rule-2"></div>
-            <div class="scene-title" id="title-2" data-layout-allow-overlap>Verify before you personalize</div>
-            <div class="scene-caption" id="caption-2" data-layout-allow-overlap>
-              The agent extracts requirements, then verifies each one against real product
-              documentation — before generating anything.
+            <div class="rule" id="rule-c"></div>
+            <div class="scene-title" id="title-c" data-layout-allow-overlap>Verify before you personalize</div>
+            <div class="scene-caption" id="caption-c" data-layout-allow-overlap>
+              Extract requirements with an LLM, then verify each one against real product
+              documentation — with a deterministic policy the model can't override.
             </div>
           </div>
           <div class="shot-col">
-            <div class="shot-frame" id="shot-frame-2">
+            <div class="shot-frame" id="shot-frame-c">
               <div class="shot-chrome"><span></span><span></span><span></span></div>
-              <div class="shot-world" id="shot-world-2" data-layout-allow-overflow>
+              <div class="shot-world" id="shot-world-c" data-layout-allow-overflow>
                 <img src="assets/02-requirements.png" alt="Requirements verification table" data-layout-allow-overflow />
               </div>
             </div>
           </div>
         </div>
+        <audio id="audio-c" data-start="24.3" data-duration="18.7" data-media-start="0" data-track-index="10" src="assets/narration/n3.wav"></audio>
       </section>
 
-      <!-- ============ SCENE 3: Demo plan + live capture (34 - 54.5) ============ -->
-      <section id="scene-3" class="scene clip" data-start="34.0" data-duration="20.5" data-track-index="1">
-        <div id="scene-3-inner" class="scene-inner content-scene">
-          <div class="glow" id="glow-3" data-layout-allow-overflow style="width: 760px; height: 760px; bottom: -280px; right: -200px; left: auto; top: auto"></div>
+      <!-- ============ SCENE D: Live capture (43.4 - 53.5) ============ -->
+      <section id="scene-d" class="scene" data-track-index="1">
+        <div id="scene-d-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-d" data-layout-allow-overflow style="width: 760px; height: 760px; bottom: -280px; right: -200px; left: auto; top: auto"></div>
           <div class="grid-lines"></div>
           <div class="copy-col">
             <div class="eyebrow" data-layout-allow-overlap>Step 2</div>
-            <div class="rule" id="rule-3"></div>
-            <div class="scene-title" id="title-3" data-layout-allow-overlap>Only verified capabilities become scenes</div>
-            <div class="scene-caption" id="caption-3" data-layout-allow-overlap>
+            <div class="rule" id="rule-d"></div>
+            <div class="scene-title" id="title-d" data-layout-allow-overlap>Only verified capabilities become scenes</div>
+            <div class="scene-caption" id="caption-d" data-layout-allow-overlap>
               Captured live, in real time, from the real seeded product — not a mockup.
             </div>
           </div>
           <div class="shot-col">
-            <div class="shot-frame" id="shot-frame-3">
+            <div class="shot-frame" id="shot-frame-d">
               <div class="shot-chrome"><span></span><span></span><span></span></div>
-              <div class="shot-world" id="shot-world-3" data-layout-allow-overflow>
+              <div class="shot-world" id="shot-world-d" data-layout-allow-overflow>
                 <img src="assets/03-demo-plan.png" alt="Demo plan with real Plane captures" data-layout-allow-overflow />
               </div>
             </div>
           </div>
         </div>
+        <audio id="audio-d" data-start="44.0" data-duration="8.6" data-media-start="0" data-track-index="10" src="assets/narration/n4.wav"></audio>
       </section>
 
-      <!-- ============ SCENE 4: The generated walkthrough clip (54 - 74.5) ============ -->
-      <!-- No data-start here on purpose: the nested <video> below needs its
-           own data-start/data-media-start for source trimming, and a timed
-           ancestor would conflict with it (lint: video_nested_in_timed_element).
-           This wrapper's visibility is instead handled entirely by the manual
-           GSAP crossfade on #scene-4-inner below, same technique as every
-           other scene already uses for the smooth fade. -->
-      <section id="scene-4" class="scene" data-track-index="1">
-        <div id="scene-4-inner" class="scene-inner">
-          <div class="glow" id="glow-4" data-layout-allow-overflow style="width: 800px; height: 800px; top: 50%; left: 50%; margin-left: -400px; margin-top: -400px"></div>
+      <!-- ============ SCENE E: The walkthrough clip (53.0 - 67.0) ============ -->
+      <section id="scene-e" class="scene" data-track-index="1">
+        <div id="scene-e-inner" class="scene-inner">
+          <div class="glow" id="glow-e" data-layout-allow-overflow style="width: 800px; height: 800px; top: 50%; left: 50%; margin-left: -400px; margin-top: -400px"></div>
           <div class="grid-lines"></div>
-          <div class="video-label" id="video-label-4">The Generated Walkthrough</div>
-          <div class="video-frame" id="video-frame-4">
+          <div class="video-label" id="video-label-e">The Generated Walkthrough</div>
+          <div class="video-frame" id="video-frame-e">
             <video
-              id="clip-4"
+              id="clip-e"
               class="clip"
               src="assets/northstar-walkthrough.mp4"
-              data-start="54.5"
+              data-start="53.5"
               data-duration="18"
               data-media-start="3.5"
               data-track-index="2"
@@ -365,63 +415,67 @@
             ></video>
           </div>
         </div>
+        <audio id="audio-e" data-start="53.6" data-duration="10.3" data-media-start="0" data-track-index="10" src="assets/narration/n5.wav"></audio>
       </section>
 
-      <!-- ============ SCENE 5: Approval + real actions (74 - 94.5) ============ -->
-      <section id="scene-5" class="scene clip" data-start="74.0" data-duration="20.5" data-track-index="1">
-        <div id="scene-5-inner" class="scene-inner content-scene">
-          <div class="glow" id="glow-5" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
+      <!-- ============ SCENE F: Approval + real actions (66.5 - 81.1) ============ -->
+      <section id="scene-f" class="scene" data-track-index="1">
+        <div id="scene-f-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-f" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
           <div class="grid-lines"></div>
           <div class="copy-col">
             <div class="eyebrow" data-layout-allow-overlap>Step 3</div>
-            <div class="rule" id="rule-5"></div>
-            <div class="scene-title" id="title-5">Nothing customer-facing without approval</div>
-            <div class="scene-caption" id="caption-5">
+            <div class="rule" id="rule-f"></div>
+            <div class="scene-title" id="title-f" data-layout-allow-overlap>Nothing customer-facing without approval</div>
+            <div class="scene-caption" id="caption-f" data-layout-allow-overlap>
               Once approved: a real email sends, a real calendar invite is created, a real CRM record
               updates.
             </div>
           </div>
           <div class="shot-col">
-            <div class="shot-frame" id="shot-frame-5">
+            <div class="shot-frame" id="shot-frame-f">
               <div class="shot-chrome"><span></span><span></span><span></span></div>
-              <div class="shot-world" id="shot-world-5" data-layout-allow-overflow>
+              <div class="shot-world" id="shot-world-f" data-layout-allow-overflow>
                 <img src="assets/05-approval-actions.png" alt="Slack approval and real actions" data-layout-allow-overflow />
               </div>
             </div>
           </div>
         </div>
+        <audio id="audio-f" data-start="67.1" data-duration="13.1" data-media-start="0" data-track-index="10" src="assets/narration/n6.wav"></audio>
       </section>
 
-      <!-- ============ SCENE 6: Reliability stat (94 - 110.5) ============ -->
-      <section id="scene-6" class="scene clip" data-start="94.0" data-duration="16.5" data-track-index="1">
-        <div id="scene-6-inner" class="scene-inner statement-scene">
-          <div class="glow" id="glow-6" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
+      <!-- ============ SCENE G: Reliability (80.6 - 96.2) ============ -->
+      <section id="scene-g" class="scene" data-track-index="1">
+        <div id="scene-g-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-g" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
           <div class="grid-lines"></div>
           <div class="statement-inner">
-            <div class="eyebrow" id="eyebrow-6" style="text-align:center">Reliability</div>
-            <div class="big-stat" id="stat-6">12 / 12</div>
+            <div class="eyebrow" id="eyebrow-g" style="text-align:center">Reliability</div>
+            <div class="big-stat" id="stat-g">12 / 12</div>
             <div class="stat-label">deterministic policy evals passing</div>
-            <div class="stat-sub" id="stat-sub-6">
+            <div class="stat-sub" id="stat-sub-g">
               3 real bugs found and fixed by testing against the live LLM and live services — not
               just mocks.
             </div>
           </div>
         </div>
+        <audio id="audio-g" data-start="81.2" data-duration="14.1" data-media-start="0" data-track-index="10" src="assets/narration/n7.wav"></audio>
       </section>
 
-      <!-- ============ SCENE 7: Closing (110 - 120) ============ -->
-      <section id="scene-7" class="scene clip" data-start="110.0" data-duration="10.0" data-track-index="1">
-        <div id="scene-7-inner" class="scene-inner statement-scene">
-          <div class="glow" id="glow-7" data-layout-allow-overflow style="width: 900px; height: 900px; bottom: -320px; left: 50%; margin-left: -450px; top: auto"></div>
+      <!-- ============ SCENE H: Closing (95.7 - 104.0) ============ -->
+      <section id="scene-h" class="scene" data-track-index="1">
+        <div id="scene-h-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-h" data-layout-allow-overflow style="width: 900px; height: 900px; bottom: -320px; left: 50%; margin-left: -450px; top: auto"></div>
           <div class="grid-lines"></div>
           <div class="statement-inner">
-            <div class="statement-text" id="closing-7">
+            <div class="statement-text" id="closing-h">
               A Solutions Engineer that never claims what it can't verify —
               <span class="accent">and never acts without approval.</span>
             </div>
             <div class="wordmark">RelaySE Agent<span class="dot"> &middot; </span>Multi-App AI Agent Hackathon 2026</div>
           </div>
         </div>
+        <audio id="audio-h" data-start="96.2" data-duration="5.3" data-media-start="0" data-track-index="10" src="assets/narration/n8.wav"></audio>
       </section>
     </div>
 
@@ -437,63 +491,75 @@
         tl.set(id, { opacity: 0 }, endTime);
       }
 
-      // ---------- SCENE 1 (0 - 14.5) ----------
-      tl.set("#scene-1-inner", { opacity: 1 }, 0);
-      tl.from("#quote-1", { y: 26, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.3);
-      tl.from("#title-1", { y: 26, opacity: 0, duration: 0.7, ease: "power3.out" }, 1.2);
-      tl.to("#glow-1", { scale: 1.15, duration: 14.5, ease: "sine.inOut" }, 0);
-      crossfadeOut("#scene-1-inner", 14.5, 0.5);
+      // ---------- SCENE A (0 - 10.6) ----------
+      tl.set("#scene-a-inner", { opacity: 1 }, 0);
+      tl.from("#quote-a", { y: 26, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.4);
+      tl.from("#quote-attribution", { opacity: 0, duration: 0.6, ease: "power2.out" }, 1.1);
+      tl.to("#glow-a", { scale: 1.15, duration: 10.6, ease: "sine.inOut" }, 0);
+      crossfadeOut("#scene-a-inner", 10.6, 0.5);
 
-      // ---------- SCENE 2 (14 - 34.5) ----------
-      crossfadeIn("#scene-2-inner", 14.0, 0.5);
-      tl.from("#rule-2", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 14.3);
-      tl.from("#title-2", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 14.4);
-      tl.from("#caption-2", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 14.6);
-      tl.from("#shot-frame-2", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 14.3);
-      tl.to("#shot-world-2", { scale: 1.07, duration: 20.2, ease: "sine.inOut" }, 14.3);
-      tl.to("#glow-2", { scale: 1.2, x: -30, duration: 20.5, ease: "sine.inOut" }, 14.0);
-      crossfadeOut("#scene-2-inner", 34.5, 0.5);
+      // ---------- SCENE B (10.1 - 24.2) ----------
+      crossfadeIn("#scene-b-inner", 10.1, 0.5);
+      tl.from(".app-title", { y: 26, opacity: 0, duration: 0.6, ease: "power3.out" }, 10.4);
+      tl.from("#app-subtitle-b", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 10.9);
+      tl.from(
+        ["#pill-1", "#pill-2", "#pill-3", "#pill-4", "#pill-5", "#pill-6"],
+        { y: 24, opacity: 0, duration: 0.5, ease: "back.out(1.6)", stagger: 0.12 },
+        11.3
+      );
+      tl.to("#glow-b", { scale: 1.15, x: -20, duration: 14.1, ease: "sine.inOut" }, 10.1);
+      crossfadeOut("#scene-b-inner", 24.2, 0.5);
 
-      // ---------- SCENE 3 (34 - 54.5) ----------
-      crossfadeIn("#scene-3-inner", 34.0, 0.5);
-      tl.from("#rule-3", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 34.3);
-      tl.from("#title-3", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 34.4);
-      tl.from("#caption-3", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 34.6);
-      tl.from("#shot-frame-3", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 34.3);
-      tl.to("#shot-world-3", { scale: 1.07, duration: 20.2, ease: "sine.inOut" }, 34.3);
-      tl.to("#glow-3", { scale: 1.2, y: 30, duration: 20.5, ease: "sine.inOut" }, 34.0);
-      crossfadeOut("#scene-3-inner", 54.5, 0.5);
+      // ---------- SCENE C (23.7 - 43.9) ----------
+      crossfadeIn("#scene-c-inner", 23.7, 0.5);
+      tl.from("#rule-c", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 24.0);
+      tl.from("#title-c", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 24.1);
+      tl.from("#caption-c", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 24.3);
+      tl.from("#shot-frame-c", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 24.0);
+      tl.to("#shot-world-c", { scale: 1.07, duration: 19.7, ease: "sine.inOut" }, 24.0);
+      tl.to("#glow-c", { scale: 1.2, x: -30, duration: 20.2, ease: "sine.inOut" }, 23.7);
+      crossfadeOut("#scene-c-inner", 43.9, 0.5);
 
-      // ---------- SCENE 4 (54 - 74.5) ----------
-      crossfadeIn("#scene-4-inner", 54.0, 0.5);
-      tl.from("#video-label-4", { y: -16, opacity: 0, duration: 0.5, ease: "power2.out" }, 54.2);
-      tl.from("#video-frame-4", { scale: 0.96, opacity: 0, duration: 0.6, ease: "power3.out" }, 54.2);
-      tl.to("#glow-4", { scale: 1.1, duration: 20.5, ease: "sine.inOut" }, 54.0);
-      crossfadeOut("#scene-4-inner", 74.5, 0.5);
+      // ---------- SCENE D (43.4 - 53.5) ----------
+      crossfadeIn("#scene-d-inner", 43.4, 0.5);
+      tl.from("#rule-d", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 43.7);
+      tl.from("#title-d", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 43.8);
+      tl.from("#caption-d", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 44.0);
+      tl.from("#shot-frame-d", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 43.7);
+      tl.to("#shot-world-d", { scale: 1.07, duration: 9.8, ease: "sine.inOut" }, 43.7);
+      tl.to("#glow-d", { scale: 1.2, y: 30, duration: 10.1, ease: "sine.inOut" }, 43.4);
+      crossfadeOut("#scene-d-inner", 53.5, 0.5);
 
-      // ---------- SCENE 5 (74 - 94.5) ----------
-      crossfadeIn("#scene-5-inner", 74.0, 0.5);
-      tl.from("#rule-5", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 74.3);
-      tl.from("#title-5", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 74.4);
-      tl.from("#caption-5", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 74.6);
-      tl.from("#shot-frame-5", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 74.3);
-      tl.to("#shot-world-5", { scale: 1.07, duration: 20.2, ease: "sine.inOut" }, 74.3);
-      tl.to("#glow-5", { scale: 1.2, x: -30, duration: 20.5, ease: "sine.inOut" }, 74.0);
-      crossfadeOut("#scene-5-inner", 94.5, 0.5);
+      // ---------- SCENE E (53.0 - 67.0) ----------
+      crossfadeIn("#scene-e-inner", 53.0, 0.5);
+      tl.from("#video-label-e", { y: -16, opacity: 0, duration: 0.5, ease: "power2.out" }, 53.2);
+      tl.from("#video-frame-e", { scale: 0.96, opacity: 0, duration: 0.6, ease: "power3.out" }, 53.2);
+      tl.to("#glow-e", { scale: 1.1, duration: 14.0, ease: "sine.inOut" }, 53.0);
+      crossfadeOut("#scene-e-inner", 67.0, 0.5);
 
-      // ---------- SCENE 6 (94 - 110.5) ----------
-      crossfadeIn("#scene-6-inner", 94.0, 0.5);
-      tl.from("#eyebrow-6", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out" }, 94.3);
-      tl.from("#stat-6", { scale: 0.85, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 94.6);
-      tl.from("#stat-sub-6", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 95.3);
-      tl.to("#glow-6", { scale: 1.15, duration: 16.5, ease: "sine.inOut" }, 94.0);
-      crossfadeOut("#scene-6-inner", 110.5, 0.5);
+      // ---------- SCENE F (66.5 - 81.1) ----------
+      crossfadeIn("#scene-f-inner", 66.5, 0.5);
+      tl.from("#rule-f", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 66.8);
+      tl.from("#title-f", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 66.9);
+      tl.from("#caption-f", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 67.1);
+      tl.from("#shot-frame-f", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 66.8);
+      tl.to("#shot-world-f", { scale: 1.07, duration: 14.3, ease: "sine.inOut" }, 66.8);
+      tl.to("#glow-f", { scale: 1.2, x: -30, duration: 14.6, ease: "sine.inOut" }, 66.5);
+      crossfadeOut("#scene-f-inner", 81.1, 0.5);
 
-      // ---------- SCENE 7 (110 - 120) ----------
-      crossfadeIn("#scene-7-inner", 110.0, 0.4);
-      tl.from("#closing-7", { y: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, 110.4);
-      tl.from(".wordmark", { opacity: 0, duration: 0.6, ease: "power2.out" }, 111.1);
-      tl.to("#glow-7", { scale: 1.15, duration: 10.0, ease: "sine.inOut" }, 110.0);
+      // ---------- SCENE G (80.6 - 96.2) ----------
+      crossfadeIn("#scene-g-inner", 80.6, 0.5);
+      tl.from("#eyebrow-g", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out" }, 80.9);
+      tl.from("#stat-g", { scale: 0.85, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 81.2);
+      tl.from("#stat-sub-g", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 81.9);
+      tl.to("#glow-g", { scale: 1.15, duration: 15.6, ease: "sine.inOut" }, 80.6);
+      crossfadeOut("#scene-g-inner", 96.2, 0.5);
+
+      // ---------- SCENE H (95.7 - 104.0) ----------
+      crossfadeIn("#scene-h-inner", 95.7, 0.4);
+      tl.from("#closing-h", { y: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, 96.1);
+      tl.from(".wordmark", { opacity: 0, duration: 0.6, ease: "power2.out" }, 96.8);
+      tl.to("#glow-h", { scale: 1.15, duration: 8.3, ease: "sine.inOut" }, 95.7);
 
       window.__timelines["main"] = tl;
     </script>

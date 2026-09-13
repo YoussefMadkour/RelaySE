@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { loadRunTrace } from "@/trace/store";
 import { ApprovalPanel } from "./ApprovalPanel";
@@ -15,13 +16,14 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
   if (!trace) notFound();
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-12">
+    <main id="main-content" className="detail-page">
+      <Link href="/" className="back-link">← Back to workspace</Link>
       <header className="border-b border-gray-200 pb-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{trace.prospect}</h1>
             <p className="mt-1 text-sm text-gray-500">
-              ${trace.demoPlan?.opportunityValue.toLocaleString()} opportunity &middot; Discovery &rarr;
+              {trace.demoPlan ? `$${trace.demoPlan.opportunityValue.toLocaleString()} opportunity` : "Discovery run"} &middot; Discovery &rarr;
               Personalized Technical Follow-Up
             </p>
           </div>
@@ -37,7 +39,7 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
 
       <section className="mt-8">
         <h2 className="text-lg font-semibold text-gray-900">Requirements &amp; Verification</h2>
-        <table className="mt-3 w-full text-sm">
+        <div className="table-scroll"><table className="mt-3 w-full text-sm">
           <thead>
             <tr className="border-b border-gray-200 text-left text-xs uppercase tracking-wide text-gray-500">
               <th className="py-2">Requirement</th>
@@ -52,14 +54,14 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
                 <td className="max-w-xs py-3 text-gray-600">&ldquo;{d.buyerEvidence.quote}&rdquo;</td>
                 <td className="py-3">
                   <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${DECISION_STYLE[d.decision]}`}>
-                    {d.decision}
+                    {d.decision.toLowerCase().replaceAll("_", " ")}
                   </span>
                   <div className="mt-1 text-xs text-gray-500">{d.reason}</div>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       </section>
 
       {trace.deferredTopics.length > 0 && (
@@ -128,6 +130,8 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
           <h2 className="text-lg font-semibold text-gray-900">Personalized Walkthrough</h2>
           <video
             controls
+            preload="none"
+            poster="/media/plane-captures/scene-1-intake.png"
             className="mt-3 w-full rounded-lg border border-gray-200"
             src="/media/northstar-walkthrough.mp4"
           />

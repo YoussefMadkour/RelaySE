@@ -56,7 +56,7 @@ export function ApprovalPanel(props: {
           <button
             onClick={() => act("approve")}
             disabled={loading !== null}
-            className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-500 disabled:opacity-50"
+            className="rounded-md bg-[#234e3c] px-5 py-3 text-sm font-medium text-white hover:bg-[#31634b] disabled:opacity-50"
           >
             {loading === "approve" ? "Executing..." : "Approve"}
           </button>
@@ -76,7 +76,7 @@ export function ApprovalPanel(props: {
         </p>
       )}
 
-      {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+      {error && <p role="alert" className="error-message">{error}</p>}
 
       {status === "approved" && (
         <div className="mt-6">
@@ -85,7 +85,7 @@ export function ApprovalPanel(props: {
             {actions.map((a, i) => (
               <li
                 key={i}
-                className={`flex items-center justify-between rounded-md border p-3 ${
+                className={`flex flex-wrap gap-3 items-center justify-between rounded-md border p-3 ${
                   a.status === "success"
                     ? "border-green-200 bg-green-50"
                     : a.status === "failed"

@@ -230,7 +230,7 @@ npm run eval
 
 ## 9. Demo Video
 
-**[Watch the 2-minute demo](docs/demo-video.mp4)** — 2:00 exactly, built with HyperFrames from real screenshots and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
+**[Watch the demo](docs/demo-video.mp4)** — 1:44, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
 
 ---
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { runAllScenarios } from "@/evals/runner";
 
 export default function EvalsPage() {
@@ -5,24 +6,22 @@ export default function EvalsPage() {
   const passing = results.filter((r) => r.passed).length;
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
+    <main id="main-content" className="detail-page">
+      <Link href="/" className="back-link">← Back to workspace</Link>
+      <p className="eyebrow">BUILT FOR CONFIDENCE</p>
       <h1 className="text-2xl font-bold text-gray-900">Reliability Evals</h1>
       <p className="mt-1 text-sm text-gray-500">
         Deterministic scenarios for the capability policy - the decision logic is never left to free-form
         model judgment, so these run instantly with no API calls.
       </p>
 
-      <div className="mt-4 inline-block rounded-full bg-gray-900 px-4 py-1.5 text-sm font-bold text-white">
-        {passing} / {results.length} scenarios passing
-      </div>
+      <div className="eval-summary"><strong>{passing} / {results.length}</strong><div><p>Scenarios passing</p><small>{passing === results.length ? "All capability policy checks passed." : "Some checks need your attention."}</small></div></div>
 
       <ul className="mt-6 space-y-2">
         {results.map((r) => (
           <li
             key={r.id}
-            className={`rounded-md border p-3 text-sm ${
-              r.passed ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"
-            }`}
+            className="eval-card text-sm"
           >
             <div className="flex items-center justify-between">
               <span className="font-medium text-gray-900">{r.id}</span>
