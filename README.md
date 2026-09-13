@@ -1,516 +1,189 @@
 # Verified Discovery-to-Demo Agent
 
-> An AI Solutions Engineer that turns a B2B discovery call into a verified, personalized product walkthrough, then executes the next technical sales step across real external apps.
+> An AI Solutions Engineer that turns a B2B discovery call into a verified, personalized product walkthrough, then executes the next technical sales step across five real external apps — live, end to end.
 
-## Project Overview
+**Built for the Multi-App AI Agent Hackathon (Comma Capital / Lemma AI, September 13, 2026).**
 
-Enterprise discovery calls are highly personalized, but the follow-up usually is not. After every call, an AE or Solutions Engineer has to review requirements, check what the product really supports, decide what to demonstrate, prepare a tailored demo, send the follow-up, schedule the next meeting, and update the CRM.
+## 1. Project Overview
 
-This project automates that post-discovery work.
+Enterprise discovery calls are highly personalized, but the follow-up usually is not. After every call, an AE or Solutions Engineer has to review requirements, check what the product really supports, decide what's safe to demonstrate, prepare a tailored demo, send the follow-up, schedule the next meeting, and update the CRM. This project automates that work — and refuses to fake the parts that require real verification.
 
-The agent:
+Given a real discovery-call transcript, the agent:
 
-1. Reads a discovery-call transcript.
-2. Extracts buyer requirements, stakeholders, commitments, and next steps.
-3. Reads CRM context for the account and opportunity.
-4. Verifies every requested capability against authoritative product documentation.
-5. Builds a demo plan using only verified capabilities.
-6. Navigates a real seeded product environment and captures the relevant workflow.
-7. Generates a short personalized walkthrough video.
-8. Requests human approval in Slack.
-9. After approval, sends the follow-up through Gmail, creates the agreed meeting in Google Calendar, and updates the CRM.
-10. Verifies the resulting external state and records a trace for every decision and action.
+1. Extracts buyer requirements, deferred topics, and next steps using an LLM (OpenAI `gpt-5.6-luna`), grounded in exact transcript quotes.
+2. Verifies every requirement against an authoritative product capability matrix (real PDFs stored in Google Drive) using a **deterministic policy** — the LLM maps buyer language onto canonical capability names, but the allow/block decision itself is never left to free-form model judgment.
+3. Builds a demo plan containing only the safe intersection of buyer intent and verified capability.
+4. Navigates a real, live, seeded product workspace (Plane) via Playwright and captures real screenshots of the exact workflow the buyer asked about.
+5. Renders a personalized ~35s walkthrough video from those real captures (built with HyperFrames).
+6. Posts a human approval request to Slack, built dynamically from the actual decisions.
+7. On approval — and not before — sends the follow-up email (with the walkthrough video attached) via Gmail, creates the agreed meeting in Google Calendar (checking first for an existing one to avoid duplicates), and updates the CRM deal in HubSpot with the verified/blocked requirements and next step.
+8. Records a full inspectable trace of every decision, capture, and external action.
 
-The core principle is **verified personalization**: the agent may personalize aggressively, but it must never demonstrate or claim unsupported functionality.
+The core principle is **verified personalization**: the agent may personalize aggressively, but it must never demonstrate or claim a capability that isn't actually supported — and it must never let a customer-facing action fire before a human approves it.
 
 ---
 
-## The Demo Scenario
+## 2. The Demo Scenario
 
-A prospect, **Northstar Labs**, has just finished a discovery call.
+**Northstar Labs** (the prospect) just finished a discovery call with **Flowboard** (the vendor — demonstrated via a real, live-seeded [Plane](https://plane.so) workspace standing in as the product).
 
-On the call, Jane Miller (Director of Engineering) and Alex Morgan (Engineering Operations Manager) say:
+On the call, Jane Miller (Director of Engineering) and Alex Morgan (Engineering Operations Manager) say things like:
 
 > "What I really want is one place where incoming engineering requests can be captured and triaged." — Jane [02:16]
->
-> "I want to see how an approved request actually gets into the next sprint without losing all the context that came with it." — Jane [03:31]
 >
 > "I definitely want to understand whether you integrate with SAP... If it's not something you support today, that's okay. I just need to know that rather than seeing something in a demo that turns out to be roadmap." — Jane [06:43, 17:21]
 >
 > "Let's get Maya involved. If you can show the intake-to-sprint workflow clearly, that's what I want her to see." — Jane [15:49]
 
-The CRM says:
+The CRM (HubSpot) says: Company Northstar Labs, Deal "Northstar Labs Platform Evaluation" ($250,000, Discovery stage), Buyer Jane Miller, Stakeholder Maya Chen (VP Engineering).
 
-- Company: Northstar Labs
-- Opportunity: $250,000
-- Stage: Discovery
-- Buyer: Jane Miller, Director of Engineering
-- Influencer: Alex Morgan, Engineering Operations Manager
-- Stakeholder: Maya Chen, VP Engineering
+The product capability matrix (two branded PDFs, uploaded to Google Drive) says: work intake/triage, sprint/cycle planning, product documentation, Jira import, and enterprise SSO are all **GA**; **SAP integration is Roadmap** (must not be shown as available); GitHub commit/PR linkage isn't in the matrix at all (**Unknown → requires human review**, the agent doesn't guess either way).
 
-The product capability matrix says:
+The agent's actual, live-run output: 3 verified capabilities become filmed scenes (real Plane screenshots), SAP is correctly excluded and flagged, 6 capabilities not in the matrix are correctly routed to human review instead of being silently approved or blocked, and the approved follow-up sends a real email with the video attached, creates a real calendar invite, and updates the real CRM deal.
 
-| Capability | Status | Demo policy |
+---
+
+## 3. Screenshots (real run output)
+
+**Home — trigger a run:**
+
+![Home](docs/screenshots/01-home.png)
+
+**Requirements extracted and verified against the real product capability matrix:**
+
+![Requirements table](docs/screenshots/02-requirements.png)
+
+**Demo plan — real Plane screenshots captured live via Playwright, one per verified capability:**
+
+![Demo plan with real captures](docs/screenshots/03-demo-plan.png)
+
+**Personalized walkthrough video, rendered from those captures:**
+
+![Walkthrough video](docs/screenshots/04-walkthrough.png)
+
+**Slack approval message (built dynamically from the actual decisions) and the real external actions after approval:**
+
+![Approval and actions](docs/screenshots/05-approval-actions.png)
+
+---
+
+## 4. External Apps Used (all 5 required, all verified live)
+
+| # | App | Role |
 |---|---|---|
-| Work intake / triage | GA | Allowed |
-| Sprint / cycle planning | GA | Allowed |
-| Product documentation | GA | Allowed |
-| Enterprise SSO | GA | Allowed (acknowledged, not a filmed scene) |
-| GitHub commit/PR linkage | Not in matrix | **Unknown — requires human review** |
-| SAP integration | Roadmap | **Do not demonstrate as available** |
+| 1 | **HubSpot** (CRM) | Account/deal/contact context; final write-back of verified requirements, blocked requirements, walkthrough status, and next technical step |
+| 2 | **Google Drive** | Authoritative product truth — two branded PDFs (Product Capability Matrix, Customer Demo Policy), downloaded and parsed live |
+| 3 | **Plane** | The real, live software product being demonstrated — a seeded workspace with real projects, issues, a cycle, and pages |
+| 4 | **Slack** | Human approval gate — no customer-facing action fires until a human approves the message posted here |
+| 5 | **Gmail** | Sends the approved follow-up, with the personalized walkthrough video attached directly (no hosting needed) |
+| 6 | **Google Calendar** | Creates the agreed technical follow-up meeting, checking first for an existing one to avoid duplicates |
+| 7 | **HyperFrames** | Renders the personalized walkthrough video from the real captured screenshots (a video-composition capability, not a runtime API — see `videos/northstar-walkthrough/`) |
 
-The agent therefore creates this demo plan:
-
-1. Show an incoming engineering request.
-2. Show triage and prioritization.
-3. Show moving approved work into a cycle/sprint.
-4. Show linked product documentation.
-5. **Exclude SAP integration** and flag it to the AE because it is roadmap, not available.
-6. **Flag GitHub linkage for human review** because it isn't in the capability matrix at all — the agent doesn't guess.
-7. Note SSO as verified/allowed in the follow-up without spending a video scene on it, because Jane explicitly scoped the next meeting to the core workflow.
-
-This is the core reliability moment: **buyer intent does not override product truth**, and **unverifiable ≠ unsupported** — the agent escalates instead of assuming either way.
+Every one of these is wired to the real service, not a mock — see `setup/*.md` for the exact setup steps and every real gotcha hit while wiring each one up (auth quirks, scope pitfalls, API surprises). This project uses seven integration points because each contributes something the workflow actually needs, not to pad an app count.
 
 ---
 
-## External Apps Used
-
-### 1. CRM, HubSpot
-Used for account, opportunity, owner, contacts, deal value, current stage, and final activity/next-step updates.
-
-### 2. Google Drive
-Used as the authoritative product-knowledge source. It contains the capability matrix and customer-facing communication policy.
-
-### 3. Plane
-Used as the real software product being demonstrated. The workspace is seeded with realistic projects, issues, cycles, and pages.
-
-### 4. HyperFrames
-Used to turn captured product states into a polished, personalized walkthrough video.
-
-### 5. Slack
-Used for the human approval boundary before any customer-facing action.
-
-### 6. Gmail
-Used to send the approved personalized follow-up and walkthrough.
-
-### 7. Google Calendar
-Used to create the agreed technical follow-up meeting.
-
-The hackathon requires at least three external apps. This project uses the apps because each contributes unique state or actions to the workflow, not simply to satisfy an integration count.
-
----
-
-## Architecture
+## 5. Architecture
 
 ```text
 Discovery transcript
         |
         v
-Requirement extractor
+Capability matrix (Drive) ---> loaded FIRST, so extraction can use
+        |                      its exact capability names as a controlled
+        v                      vocabulary (see Reliability section)
+Requirement extractor (OpenAI gpt-5.6-luna)
         |
-        +----------------------+
-        |                      |
-        v                      v
-     HubSpot               Google Drive
- commercial context         product truth
-        |                      |
-        +----------+-----------+
-                   |
-                   v
-          Capability verifier
-                   |
-                   v
-              Demo planner
-                   |
-                   v
-                 Plane
-           real product state
-                   |
-               Playwright
-                   |
-                   v
-              HyperFrames
-                   |
-                   v
-        Personalized walkthrough
-                   |
-                   v
-              Slack approval
-                   |
-            human approves
-                   |
-       +-----------+-----------+
-       |           |           |
-       v           v           v
-     Gmail      Calendar     HubSpot
-      send        create      update
-       |           |           |
-       +-----------+-----------+
-                   |
-                   v
-            State verification
-                   |
-                   v
-              Run trace
+        v
+   HubSpot (commercial context)
+        |
+        v
+Deterministic capability policy  (GA/BETA/ROADMAP/UNSUPPORTED/UNKNOWN
+        |                         -> ALLOW/ALLOW_WITH_WARNING/BLOCK/
+        v                          REQUIRE_HUMAN_REVIEW - never free-form)
+Demo planner (one scene per verified capability, deduplicated)
+        |
+        v
+      Plane (real product) --> Playwright capture (real screenshots)
+        |
+        v
+   HyperFrames --> personalized walkthrough video
+        |
+        v
+   Slack approval (posted automatically; not a customer-facing action)
+        |
+   human approves in the web UI
+        |
+   +----------+-----------+
+   |          |           |
+   v          v           v
+ Gmail    Calendar     HubSpot
+ (send)   (create,     (update deal)
+          dedup-checked)
+   |          |           |
+   +----------+-----------+
+              |
+              v
+    Full run trace (JSON, inspectable in the UI)
 ```
 
 ---
 
-## Agent Workflow
+## 6. Agent Workflow (as actually implemented)
 
-### 1. Understand the call
+Source: `src/agent/orchestrator.ts` wires all of the below.
 
-The agent extracts:
-
-- buyer pain points
-- explicit requirements
-- optional interests
-- stakeholders
-- commitments
-- agreed next steps
-- scheduling intent
-- unsupported or uncertain requests that require verification
-
-Every extracted item retains the transcript span that produced it.
-
-### 2. Read commercial context
-
-The agent reads the CRM and resolves:
-
-- account
-- opportunity
-- opportunity value
-- stage
-- owner
-- known contacts
-- existing next step
-- duplicate activities or meetings
-
-### 3. Verify product capabilities
-
-For every buyer requirement, the agent retrieves product evidence and assigns one of:
-
-- `VERIFIED_GA`
-- `VERIFIED_BETA`
-- `UNSUPPORTED`
-- `ROADMAP`
-- `UNKNOWN`
-
-Policy:
-
-- GA can be demonstrated.
-- Beta may be demonstrated only if explicitly labeled and approved.
-- Roadmap and unsupported features must not be shown as available.
-- Unknown capabilities require human review.
-- The agent must preserve source evidence for every decision.
-
-### 4. Build the personalized demo plan
-
-Only the safe intersection of:
-
-```text
-buyer intent ∩ verified product capability
-```
-
-becomes the demo.
-
-Each planned scene contains:
-
-- buyer requirement
-- transcript evidence
-- product capability evidence
-- product route or workflow
-- scene objective
-- allowed wording
-
-### 5. Navigate the real product
-
-Playwright opens the seeded Plane workspace and captures the relevant product states.
-
-The demo is based on a real software environment, not generated screenshots.
-
-### 6. Generate the personalized walkthrough
-
-HyperFrames produces a 30–45 second video containing:
-
-- prospect/company-specific intro
-- only verified product workflows
-- captured product UI
-- concise narration/captions
-- next-step CTA
-
-### 7. Request human approval
-
-Slack receives a summary:
-
-```text
-NORTHSTAR LABS FOLLOW-UP READY
-
-Opportunity: $250k
-
-Verified:
-✓ Work intake / triage
-✓ Sprint planning
-✓ Product documentation
-
-Excluded:
-⚠ SAP integration, Roadmap
-
-Prepared:
-✓ Personalized walkthrough
-✓ Follow-up email
-✓ VP Engineering technical meeting
-
-[Approve] [Reject]
-```
-
-No customer-facing action happens before approval.
-
-### 8. Execute real actions
-
-After approval:
-
-- Gmail sends the follow-up.
-- Google Calendar creates the agreed meeting.
-- HubSpot records requirements, activity, next step, and walkthrough URL.
-
-### 9. Verify side effects
-
-The run is successful only if the external state confirms that the actions occurred.
-
-Examples:
-
-- Gmail message ID exists.
-- Calendar event ID exists.
-- CRM activity/next-step update exists.
-
-A failed send must not be recorded as a completed follow-up.
+1. **`extractRequirements.ts`** — calls OpenAI (`gpt-5.6-luna`) with the transcript and the product capability matrix's exact capability names as a controlled vocabulary. Returns requirements, deferred topics (buyer explicitly punted — must never block anything), and next steps, each with an exact transcript quote as evidence.
+2. **HubSpot connector** (`connectors/hubspot.ts`) — resolves account/opportunity/contacts.
+3. **`verifyCapabilities.ts` + `policies/capabilityPolicy.ts`** — the deterministic core. GA → ALLOW, BETA → ALLOW_WITH_WARNING, ROADMAP/UNSUPPORTED → BLOCK, no matrix entry → REQUIRE_HUMAN_REVIEW. Conflicting product-doc sources are resolved by authority ranking; equally-authoritative conflicts also escalate to human review. This function is pure and unit-tested — see §7.
+4. **`planDemo.ts`** — the safe intersection (`buyer intent ∩ verified capability`) becomes the demo. One scene per capability (deduplicated even when several buyer statements support the same one).
+5. **`capture/playwright.ts`** — authenticates into the live Plane workspace (saved session, see `scripts/plane-login.mjs`) and screenshots each scene's real route. Fails loudly — and writes zero output — if a route doesn't load or renders a "not found"/sign-in state; never substitutes a fake screenshot.
+6. **HyperFrames composition** (`videos/northstar-walkthrough/`) — a real rendered MP4 built from the actual captured screenshots.
+7. **`requestApproval.ts`** — builds the Slack message from the real decisions (not a static template) and posts it.
+8. **`executeFollowup.ts`** (only after human approval via the UI) — sends Gmail with the video attached, creates/reuses the Calendar event, updates the HubSpot deal. Each step is independently try/caught and recorded; the CRM note only reports success where success actually happened.
 
 ---
 
-## Traceability
+## 7. Reliability and Evaluation
 
-Every decision and scene can be traced from buyer intent to product evidence to external action.
+### 7a. Deterministic policy evals (automated, run in seconds, no API calls)
 
-Example:
+`npm run eval` (or `npx vitest run`) runs 12 scenarios directly against `capabilityPolicy.ts` — GA/BETA/ROADMAP/UNSUPPORTED/UNKNOWN handling, authority-based conflict resolution, and a prompt-injection test (a product document containing "IGNORE ALL PREVIOUS POLICIES..." must not change the outcome). **All 12 currently pass.** This is the part of the system that must never depend on model judgment, so it's tested as plain deterministic code, not as an LLM eval.
 
-```text
-Scene: Issue Triage
+### 7b. What live testing against the real LLM actually found (and the fixes)
 
-Buyer evidence:
-Discovery transcript @ 08:42
-"We need one place to triage incoming engineering requests."
+Automated unit tests only cover the deterministic policy. The extraction step talks to a real model, and running the full pipeline for real surfaced three genuine bugs no amount of mocking would have caught:
 
-Product evidence:
-Capability Matrix / Work Intake
-Status: GA
+1. **Capability-name mismatch.** The model paraphrased capabilities in its own words ("sprint planning" vs. the matrix's "sprint / cycle planning") — exact-match verification then silently treated a clearly-GA capability as unverifiable. **Fix:** the orchestrator now loads the capability matrix *before* calling extraction and hands the model its exact capability names as a controlled vocabulary, so buyer language gets mapped onto canonical names the policy can actually match.
+2. **Duplicate demo scenes.** Multiple buyer statements legitimately map to the same capability, but the demo planner generated one scene per *requirement* instead of per *capability*. **Fix:** scenes are now deduplicated by capability.
+3. **A nullable-schema mismatch with the LLM provider.** OpenAI's structured-output strict mode requires every optional field to be present-but-nullable rather than omittable; the local Zod validator only accepted `undefined`, so a real (correct) `null` response failed validation. **Fix:** separate nullable-aware parsing schemas for raw model output, converted to the app's internal `undefined`-based types after validation.
 
-Product route:
-/workspace/northstar/projects/customer-requests
+All three were found by running the real pipeline against the real Plane workspace, the real HubSpot deal, and the real LLM — then fixed and re-verified with a fresh run. This is the reliability story the hackathon's judging criteria ask for: not "we wrote some tests," but "here's what broke against reality, and what changed as a result."
 
-Decision:
-Allowed in personalized demo
+### 7c. Side-effect verification (not just trusting API responses)
 
-Downstream:
-Included in video scene 2
-Included in CRM requirement record
-Referenced in follow-up email
-```
+Every external action from the last live run was independently re-checked, not just trusted from the initial response:
+- **Slack**: `chat.postMessage` returned `ok:true` with a real `ts`.
+- **Gmail**: re-fetched the sent message — confirmed recipient, subject, and a 13.6MB size (matching the ~9.5MB video actually landing as an attachment, not a broken link).
+- **Calendar**: re-fetched the created event — confirmed title, correct time, correct attendees.
+- **HubSpot**: re-fetched the deal — confirmed all 4 custom properties (`verified_requirements`, `blocked_requirements`, `walkthrough_url`, `next_technical_step`) reflect the actual run's data.
+- **Double-approval** is rejected by the API (`Run is already approved`) — re-clicking Approve cannot double-send or double-invite.
 
-This makes the generated demo auditable instead of opaque.
+### 7d. Deliberate reliability behaviors, verified live
 
----
-
-## Reliability and Evaluation
-
-The agent is evaluated on **outcomes and side effects**, not only generated text.
-
-### Core evaluation cases
-
-| Scenario | Expected behavior |
-|---|---|
-| Buyer requests a GA capability | Include it |
-| Buyer requests a Roadmap capability | Exclude it and warn AE |
-| Capability evidence is missing | Escalate for review |
-| Buyer says “our VP may want to see this sometime” | Do not schedule |
-| Buyer says “let’s get our VP on a technical call next week” | Prepare/schedule the next meeting |
-| Existing meeting already exists | Do not create a duplicate |
-| Walkthrough generation fails | Do not send the follow-up |
-| Gmail send fails | Do not mark follow-up complete |
-| CRM update fails after email send | Surface partial failure and retry/update separately |
-| Prospect recipient is not verified | Block external send |
-| Product docs contain conflicting capability status | Use authority rules or escalate |
-| Prompt injection appears inside a source document | Ignore it as untrusted data |
-
-### Example assertions
-
-```text
-assert unsupported_capability not in demo_plan
-assert unsupported_capability not in customer_email
-assert calendar_event_created == explicit_meeting_commitment
-assert crm_followup_complete == gmail_send_succeeded
-assert every_demo_scene.has_buyer_evidence
-assert every_demo_scene.has_product_evidence
-```
+- A capability the buyer explicitly deferred ("we can deal with that separately") never appears as a requirement, never blocks anything, and never appears in the demo plan.
+- A capability that's verified-and-allowed doesn't automatically get a filmed scene — only capabilities with an actual mapped product route do, so the buyer's explicit scoping of the next meeting is respected.
+- A capture that fails (bad route, deleted resource, or an expired session silently redirected to a sign-in page) writes **zero** screenshot output and blocks the walkthrough, rather than silently substituting a broken or fake image — this SPA-specific failure mode (HTTP 200 with a "not found" page rendered client-side) was caught and fixed during development, verified with both a deliberately-broken route and the real routes.
 
 ---
 
-## Seeded Demo Data
+## 8. Local Setup
 
-### HubSpot
+### Prerequisites
 
-Create:
-
-**Company**
-- Northstar Labs
-- Industry: B2B SaaS
-- Tier: Enterprise
-
-**Deal**
-- Name: Northstar Labs Platform Evaluation
-- Amount: $250,000
-- Stage: Discovery
-- Owner: Sarah Lee
-
-**Contacts**
-- Jane Miller, Director of Engineering
-- Maya Chen, VP Engineering
-
-### Google Drive
-
-Create a folder:
-
-```text
-/Product Knowledge
-```
-
-Add:
-
-**Product Capability Matrix**
-```text
-Work intake / triage       GA
-Cycles / sprint planning   GA
-Pages / documentation      GA
-Jira import                GA
-SSO                        Enterprise GA
-Advanced capacity planning Beta
-SAP integration            Roadmap Q1 2027
-Oracle Fusion              Not supported
-```
-
-**Customer Demo Policy**
-```text
-GA: may be demonstrated.
-Beta: must be labeled beta and requires approval.
-Roadmap: do not present as currently available.
-Unsupported: do not demonstrate.
-Unknown: require human confirmation.
-```
-
-### Plane
-
-Create workspace:
-
-```text
-Northstar Demo Environment
-```
-
-Projects:
-- Platform
-- Mobile
-- Customer Requests
-
-Issues:
-- Enterprise SSO request
-- CSV export performance regression
-- Mobile offline mode
-- Bulk user import
-- Audit-log export
-
-Cycle:
-- Q4 Sprint 3
-
-Pages:
-- Intake & Triage Playbook
-- Release Planning
-- Authentication Architecture
-
-### Slack
-
-Create:
-
-```text
-#demo-approvals
-```
-
-The agent posts approval summaries here.
-
-### Gmail
-
-Use a test inbox you control as the prospect recipient.
-
-Never send hackathon test messages to a real third party.
-
-### Google Calendar
-
-Use a test calendar or a dedicated `Demo` calendar.
-
----
-
-## Suggested Repository Structure
-
-```text
-.
-├── README.md
-├── CLAUDE_BUILD_SPEC.md
-├── .env.example
-├── package.json
-├── src/
-│   ├── app/
-│   │   ├── page.tsx
-│   │   ├── api/
-│   │   ├── runs/
-│   │   └── evals/
-│   ├── agent/
-│   │   ├── orchestrator.ts
-│   │   ├── extractRequirements.ts
-│   │   ├── verifyCapabilities.ts
-│   │   ├── planDemo.ts
-│   │   ├── requestApproval.ts
-│   │   └── executeActions.ts
-│   ├── connectors/
-│   │   ├── hubspot.ts
-│   │   ├── drive.ts
-│   │   ├── plane.ts
-│   │   ├── slack.ts
-│   │   ├── gmail.ts
-│   │   ├── calendar.ts
-│   │   └── hyperframes.ts
-│   ├── capture/
-│   │   └── playwright.ts
-│   ├── trace/
-│   │   ├── schema.ts
-│   │   └── store.ts
-│   └── evals/
-│       ├── scenarios/
-│       └── runner.ts
-├── scripts/
-│   ├── seed-plane.ts
-│   ├── seed-hubspot.ts
-│   ├── seed-drive.ts
-│   └── reset-demo.ts
-├── data/
-│   ├── transcripts/
-│   │   └── northstar-discovery.md
-│   ├── fixtures/
-│   └── traces/
-└── tests/
-    └── evals/
-```
-
----
-
-## Local Setup
+- Node.js 20+
+- Chrome (for Playwright)
+- Accounts/credentials for: OpenAI, HubSpot, Google Cloud (OAuth), Plane Cloud, Slack — see `setup/*.md` for exact, step-by-step instructions for each, including every real gotcha hit along the way (wrong OAuth client types, scope creep, SPA overflow quirks, etc.)
 
 ### 1. Install
 
@@ -521,61 +194,33 @@ npx playwright install chromium
 
 ### 2. Configure environment
 
-Copy:
-
 ```bash
 cp .env.example .env.local
 ```
 
-Required configuration will include keys/tokens for the LLM provider and the external apps used in live mode.
-
-Example:
-
-```text
-OPENAI_API_KEY=
-
-HUBSPOT_ACCESS_TOKEN=
-
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-GOOGLE_REFRESH_TOKEN=
-GOOGLE_DRIVE_FOLDER_ID=
-GOOGLE_CALENDAR_ID=
-
-PLANE_BASE_URL=
-PLANE_API_KEY=
-PLANE_WORKSPACE_ID=
-
-SLACK_BOT_TOKEN=
-SLACK_APP_TOKEN=
-SLACK_CHANNEL_ID=
-
-DEMO_PROSPECT_EMAIL=
-
-HYPERFRAMES_CONFIG=
-```
+Fill in `.env.local` with your own credentials. See `setup/README.md` for the full checklist and `setup/{plane,hubspot,slack,google}.md` for exact per-app instructions.
 
 ### 3. Seed the demo environment
 
 ```bash
-npm run seed
+node --env-file=.env.local scripts/seed-plane.mjs      # 3 projects, 6 issues, 1 cycle, 3 pages
+node --env-file=.env.local scripts/seed-hubspot.mjs    # Company, Deal, 3 Contacts, 4 custom deal properties
+node --env-file=.env.local scripts/plane-login.mjs     # saves a browser session for Playwright capture
 ```
 
-The seed command should be idempotent and safe to run repeatedly.
+All idempotent — safe to re-run. Slack's `#demo-approvals` channel and the Drive "Product Knowledge" folder (with the two PDFs in `data/docs/pdf/`) are currently manual one-time setup steps — see `setup/slack.md` and `setup/google.md`.
 
-### 4. Start the application
+### 4. Start the app
 
 ```bash
 npm run dev
 ```
 
-### 5. Run the main scenario
+### 5. Run the scenario
 
-```bash
-npm run demo:northstar
-```
+Open `http://localhost:3000`, click **Run scenario**. This runs the full pipeline (extraction → verification → demo plan → live Playwright capture → Slack approval post) and redirects to the run page. Review the requirements table, demo plan, and walkthrough video, then click **Approve** to trigger the real Gmail/Calendar/HubSpot actions (or **Reject** to stop there).
 
-### 6. Run evaluations
+### 6. Run the deterministic evals
 
 ```bash
 npm run eval
@@ -583,159 +228,39 @@ npm run eval
 
 ---
 
-## Demo UI
+## 9. Demo Video
 
-The UI should make the agent’s work visible rather than hiding everything behind a chatbot.
-
-One run should show:
-
-1. Discovery transcript
-2. Extracted requirements
-3. CRM context
-4. Capability verification table
-5. Blocked/uncertain capabilities
-6. Generated demo plan
-7. Walkthrough preview
-8. Slack approval state
-9. External actions
-10. Traceability/evidence
-11. Evaluation results
+**[Add the 2-minute demo video link here before submitting]**
 
 ---
 
-## Two-Minute Demo Story
+## 10. Limitations
 
-**0:00–0:12**
-
-“Every enterprise discovery call is personalized. The demo that follows usually isn’t. Solutions Engineers spend hours translating buyer requirements into tailored product demos.”
-
-Show Northstar Labs' discovery-call request.
-
-**0:12–0:32**
-
-Show:
-
-- $250k opportunity in CRM
-- extracted requirements
-- capability verification
-- `SAP integration -> ROADMAP -> BLOCKED`
-
-Say:
-
-“Before generating anything, the agent verifies what we are actually allowed to demonstrate.”
-
-**0:32–0:52**
-
-Show the generated demo plan and the agent navigating the real product.
-
-**0:52–1:17**
-
-Play 15–20 seconds of the generated personalized walkthrough.
-
-**1:17–1:37**
-
-Show the Slack approval card. Approve it.
-
-Then quickly show:
-
-```text
-Gmail       SENT ✓
-Calendar    CREATED ✓
-HubSpot     UPDATED ✓
-```
-
-**1:37–1:52**
-
-Show one trace:
-
-```text
-Scene 2: Triage
-Buyer evidence: transcript 08:42
-Product evidence: Capability Matrix §3.1
-Product route: /inbox
-Status: GA
-```
-
-**1:52–2:00**
-
-Show the eval summary:
-
-```text
-✓ unsupported capabilities blocked
-✓ ambiguous meetings not scheduled
-✓ failed videos block sending
-✓ CRM only completes after successful actions
-```
-
-Close with:
-
-> “We turn every discovery call into a verified, personalized product experience, then execute the next technical sales step.”
+- Single scenario (Northstar Labs), by design — see `CLAUDE_BUILD_SPEC.md` §29 for why breadth was deliberately not pursued.
+- The Google refresh token is for an OAuth app in **Testing** publish status — Google auto-revokes those after 7 days. Fine for the hackathon; would need re-authorization (or publishing the OAuth app) for longer-term use.
+- `DEMO_PROSPECT_EMAIL`/`DEMO_STAKEHOLDER_EMAIL` are Gmail `+`-alias addresses on one real controlled inbox — appropriate for a demo, not how a production system would model distinct recipients.
+- Plane project/cycle/page IDs in `planDemo.ts` are hardcoded to this specific seeded workspace, matching the scenario's intentionally narrow scope.
+- Slack approval is a plain message + a button in this app's own UI, not native Slack interactive buttons (Socket Mode) — an explicitly deferred stretch goal, with this as its documented fallback.
+- The Drive/CRM **read** connectors are fixture-backed (mock) rather than live-parsed from the actual PDF/HubSpot record on every run; the Slack/Gmail/Calendar/HubSpot **write** side (the actual side effects being demonstrated) is fully live. See `src/connectors/` for the mock/live seam.
 
 ---
 
-## Economic Value
+## 11. Economic Value
 
-The product targets repetitive Solutions Engineering and post-discovery work.
+The product targets repetitive Solutions Engineering and post-discovery work: discovery → review notes → map requirements → check product support → prepare demo → record walkthrough → draft follow-up → schedule meeting → update CRM. The agent performs the repetitive work and leaves the human responsible for approval and the higher-value technical conversation that follows.
 
-Instead of:
-
-```text
-Discovery
-→ review notes
-→ map requirements
-→ check product support
-→ prepare demo
-→ record walkthrough
-→ draft follow-up
-→ schedule meeting
-→ update CRM
-```
-
-the agent performs the repetitive work and leaves the human responsible for approval and higher-value technical conversations.
-
-Potential business metrics:
-
-- discovery-to-personalized-demo time
-- Solutions Engineer preparation hours per opportunity
-- opportunities supported per SE
-- discovery-to-technical-demo conversion
-- opportunity progression
-- follow-up completion rate
-
-The personalized video is the wedge. The broader product direction is an **AI Solutions Engineer** that handles repetitive technical work between discovery and close.
+The personalized video is the wedge. The broader product direction is an AI Solutions Engineer that handles repetitive technical work between discovery and close — requirement qualification, technical collateral, security responses, POCs, demo preparation, and technical follow-up.
 
 ---
 
-## Limitations
+## 12. Hackathon Summary
 
-- The hackathon version uses one primary seeded product environment.
-- Product capability truth is only as good as the connected source documents.
-- Customer-facing actions require human approval.
-- The agent should never autonomously invent product capabilities.
-- The personalized walkthrough is not intended to replace complex live technical evaluations.
+**Problem:** post-discovery technical sales work is slow, repetitive, and easy to get subtly wrong (claiming something the product doesn't actually do).
 
----
+**Agent:** converts buyer intent into a verified, personalized product walkthrough — using a real seeded product, real captured screenshots, and a real rendered video — then executes the next sales step across five real external apps, gated by human approval.
 
-## Demo Video
+**Multi-app orchestration:** HubSpot + Google Drive + Plane + Slack + Gmail + Google Calendar + HyperFrames, all verified working live, not mocked for the demo.
 
-Add the final public demo link here:
+**Reliability:** a deterministic, unit-tested policy core; three real bugs found and fixed by testing against the actual LLM and actual services rather than only mocks; every side effect independently re-verified rather than trusted from its own API response.
 
-```text
-DEMO_VIDEO_URL=
-```
-
----
-
-## Hackathon Summary
-
-**Problem:** post-discovery technical sales work is slow and repetitive.
-
-**Agent:** converts buyer intent into a verified personalized product walkthrough and executes the next step.
-
-**Multi-app orchestration:** CRM + Drive + real product + video generation + Slack + Gmail + Calendar.
-
-**Reliability:** unsupported capabilities are blocked, every scene is evidence-backed, side effects are verified, and failures do not silently advance the deal.
-
-**Economic work:** automates repetitive Solutions Engineer preparation and sales follow-up.
-
-**Differentiator:** the agent does not merely personalize content. It decides what is safe and relevant to demonstrate using both buyer intent and authoritative product truth.
+**Differentiator:** the agent doesn't just personalize content — it decides what's safe to demonstrate using both buyer intent and authoritative, machine-readable product truth, and it never lets a customer-facing action fire without a human in the loop.
