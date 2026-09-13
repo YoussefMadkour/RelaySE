@@ -1,0 +1,66 @@
+[
+  {
+    "capability": "work intake / triage",
+    "status": "GA",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Work Intake / Triage",
+    "evidenceText": "Teams can capture, classify, prioritize, assign, and route incoming work from any channel into one consistent front door.",
+    "authority": 1.0
+  },
+  {
+    "capability": "sprint / cycle planning",
+    "status": "GA",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Cycles / Sprint Planning",
+    "evidenceText": "Teams can organize approved work into time-boxed cycles, preserve originating context, and track progress against capacity.",
+    "authority": 1.0
+  },
+  {
+    "capability": "product documentation",
+    "status": "GA",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Pages / Product Documentation",
+    "evidenceText": "Teams can create product and technical documentation and link it directly to the execution work it describes.",
+    "authority": 1.0
+  },
+  {
+    "capability": "jira import",
+    "status": "GA",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Jira Import",
+    "evidenceText": "Existing issues and historical backlog items can be imported from Jira.",
+    "authority": 1.0
+  },
+  {
+    "capability": "enterprise sso",
+    "status": "GA",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Enterprise SSO",
+    "evidenceText": "Enterprise plans support SSO configuration, including Okta, for production environments.",
+    "authority": 1.0
+  },
+  {
+    "capability": "advanced capacity planning",
+    "status": "BETA",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Advanced Capacity Planning",
+    "evidenceText": "Per-engineer capacity calculations and load forecasting are available in controlled beta.",
+    "authority": 1.0
+  },
+  {
+    "capability": "sap integration",
+    "status": "ROADMAP",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "SAP Integration",
+    "evidenceText": "Native SAP integration is not currently generally available. Target Q1 2027.",
+    "authority": 1.0
+  },
+  {
+    "capability": "oracle fusion",
+    "status": "UNSUPPORTED",
+    "sourceDocument": "Product Capability Matrix",
+    "sourceSection": "Oracle Fusion",
+    "evidenceText": "Native Oracle Fusion integration is not currently supported and is not planned.",
+    "authority": 1.0
+  }
+]

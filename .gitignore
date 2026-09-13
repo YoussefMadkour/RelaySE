@@ -13,6 +13,8 @@ out/
 # build
 dist/
 build/
+tsconfig.tsbuildinfo
+next-env.d.ts
 
 # testing
 coverage/

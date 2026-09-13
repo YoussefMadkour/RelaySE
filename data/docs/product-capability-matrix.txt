@@ -1,0 +1,35 @@
+PRODUCT CAPABILITY MATRIX
+Version: 3.2
+
+Work Intake / Triage
+Status: GA
+Description: Teams can capture, classify, prioritize, assign, and route incoming work from any channel into one consistent front door.
+
+Cycles / Sprint Planning
+Status: GA
+Description: Teams can organize approved work into time-boxed cycles, preserve originating context, and track progress against capacity.
+
+Pages / Product Documentation
+Status: GA
+Description: Teams can create product and technical documentation and link it directly to the execution work it describes.
+
+Jira Import
+Status: GA
+Description: Existing issues and historical backlog items can be imported from Jira.
+
+Enterprise SSO
+Status: GA
+Description: Enterprise plans support SSO configuration, including Okta, for production environments.
+
+Advanced Capacity Planning
+Status: BETA
+Description: Per-engineer capacity calculations and load forecasting are available in controlled beta.
+
+SAP Integration
+Status: ROADMAP
+Target: Q1 2027
+Description: Native SAP integration is not currently generally available. Company-level systems-consolidation use cases are not yet supported.
+
+Oracle Fusion
+Status: UNSUPPORTED
+Description: Native Oracle Fusion integration is not currently supported and is not planned.

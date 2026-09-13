@@ -1,0 +1,47 @@
+{
+  "company": {
+    "name": "Northstar Labs",
+    "domain": "northstarlabs-demo.example",
+    "industry": "COMPUTER_SOFTWARE",
+    "tier": "Enterprise",
+    "employeeCount": 110,
+    "notes": "Grew from ~35 to 110+ engineers over the last year; evaluating a platform to fix intake/triage, sprint planning, and documentation workflows."
+  },
+  "deal": {
+    "name": "Northstar Labs Platform Evaluation",
+    "amount": 250000,
+    "currency": "USD",
+    "stage": "Discovery",
+    "owner": "Sarah Lee",
+    "closeQuarterTarget": "This quarter (direction decision), pilot to follow"
+  },
+  "contacts": [
+    {
+      "name": "Jane Miller",
+      "title": "Director of Engineering",
+      "role": "primary_buyer",
+      "email": "$DEMO_PROSPECT_EMAIL",
+      "notes": "Leading the evaluation from Engineering. Wants intake/triage, sprint planning with preserved context, and documentation linked to execution. Needs SAP integration status verified before any claim is made."
+    },
+    {
+      "name": "Alex Morgan",
+      "title": "Engineering Operations Manager",
+      "role": "influencer",
+      "email": "madkour.youssef+alex@gmail.com",
+      "notes": "Helping Jane evaluate workflow fit. Cares about ownership clarity, triage time, and avoiding a heavy migration project."
+    },
+    {
+      "name": "Maya Chen",
+      "title": "VP Engineering",
+      "role": "technical_stakeholder",
+      "email": "$DEMO_STAKEHOLDER_EMAIL",
+      "notes": "Main technical approver. Skeptical of tools that require heavy admin overhead. Wants to see the intake-to-sprint workflow directly, not a slide deck. To be included in the next technical demo."
+    }
+  ],
+  "note_fields": {
+    "Verified Requirements": "",
+    "Blocked Requirements": "",
+    "Personalized Walkthrough URL": "",
+    "Next Technical Step": ""
+  }
+}

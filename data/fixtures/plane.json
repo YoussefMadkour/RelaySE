@@ -1,0 +1,15 @@
+{
+  "workspace": "Northstar Demo Environment",
+  "routes": {
+    "customerRequests": "/workspace/northstar/projects/customer-requests",
+    "ssoIssue": "/workspace/northstar/projects/customer-requests/issues/enterprise-sso-access-request",
+    "cycle": "/workspace/northstar/projects/customer-requests/cycles/q4-sprint-3",
+    "triagePlaybook": "/workspace/northstar/projects/customer-requests/pages/intake-triage-playbook"
+  },
+  "mockScreenshots": [
+    { "sceneId": "scene-1-intake", "screenshotPath": "data/fixtures/screenshots/scene-1-intake.png", "route": "/workspace/northstar/projects/customer-requests" },
+    { "sceneId": "scene-2-triage", "screenshotPath": "data/fixtures/screenshots/scene-2-triage.png", "route": "/workspace/northstar/projects/customer-requests/issues/enterprise-sso-access-request" },
+    { "sceneId": "scene-3-cycle", "screenshotPath": "data/fixtures/screenshots/scene-3-cycle.png", "route": "/workspace/northstar/projects/customer-requests/cycles/q4-sprint-3" },
+    { "sceneId": "scene-4-docs", "screenshotPath": "data/fixtures/screenshots/scene-4-docs.png", "route": "/workspace/northstar/projects/customer-requests/pages/intake-triage-playbook" }
+  ]
+}

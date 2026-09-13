@@ -67,7 +67,7 @@ Build exactly one primary scenario first.
 
 ## Prospect
 
-**Acme Corp**
+**Northstar Labs**
 
 ## Opportunity
 
@@ -75,25 +75,12 @@ Build exactly one primary scenario first.
 - Stage: `Discovery`
 - Account owner: `Sarah Lee`
 - Buyer: `Jane Miller, Director of Engineering`
+- Influencer: `Alex Morgan, Engineering Operations Manager`
 - Stakeholder: `Maya Chen, VP Engineering`
 
 ## Discovery-call transcript
 
-Create `data/transcripts/acme-discovery.txt` with a realistic short transcript containing at least these statements:
-
-```text
-Jane: Right now requests come in through email, Slack, and random conversations. We need one place where engineering can triage incoming work.
-
-Jane: We plan in two-week sprints, so I want to see how approved requests actually get into the next sprint without losing context.
-
-Jane: We also care about keeping the product documentation connected to the work instead of having specs live somewhere else.
-
-Jane: SAP integration is important for us. I would definitely want to see how that works.
-
-Jane: If the workflow looks right, let's get our VP Engineering, Maya, onto a technical demo next week.
-```
-
-The transcript should also contain irrelevant conversation so extraction is non-trivial.
+Use the real transcript at `data/transcripts/northstar-discovery.md` (Northstar Labs × Flowboard, 27 minutes, Sarah Lee + Daniel Brooks on the vendor side, Jane Miller + Alex Morgan on the buyer side). It already contains realistic noise, hedged/deferred asks, and an explicit "verify before you claim it" instruction on SAP — do not replace it with a synthetic one.
 
 Expected extraction:
 
@@ -103,36 +90,97 @@ Expected extraction:
     {
       "name": "work intake / triage",
       "importance": "high",
-      "explicit": true
+      "explicit": true,
+      "evidence": "What I really want is one place where incoming engineering requests can be captured and triaged. [02:16]"
     },
     {
-      "name": "sprint / cycle planning",
+      "name": "sprint / cycle planning with preserved context",
       "importance": "high",
-      "explicit": true
+      "explicit": true,
+      "evidence": "I want to see how an approved request actually gets into the next sprint without losing all the context that came with it. [03:31]"
     },
     {
-      "name": "linked product documentation",
-      "importance": "medium",
-      "explicit": true
+      "name": "documentation linked to execution",
+      "importance": "high",
+      "explicit": true,
+      "evidence": "I want the engineer looking at a piece of work to be able to understand why we're doing it and find the relevant product or technical context without searching through five systems. [05:14]"
     },
     {
       "name": "SAP integration",
       "importance": "high",
-      "explicit": true
+      "explicit": true,
+      "requiresVerification": true,
+      "evidence": "I definitely want to understand whether you integrate with SAP and what that looks like. [06:43]; If it's not something you support today, that's okay. I just need to know that rather than seeing something in a demo that turns out to be roadmap. [17:21]"
+    },
+    {
+      "name": "enterprise sso",
+      "importance": "medium",
+      "explicit": true,
+      "evidence": "Is SSO required? For production, yes. We're on Okta. [08:32]"
+    },
+    {
+      "name": "role-based permissions",
+      "importance": "medium",
+      "explicit": true,
+      "evidence": "Especially for security-related work and some enterprise customer issues. Not everything should be visible to everyone. [08:23]"
+    },
+    {
+      "name": "jira import",
+      "importance": "low",
+      "explicit": true,
+      "evidence": "Jira migration might come up... That's useful but not a deal breaker. [07:17]"
+    },
+    {
+      "name": "github commit/PR linkage",
+      "importance": "low",
+      "explicit": true,
+      "evidence": "Would you expect commits and pull requests tied back to work items? Potentially... I wouldn't make that the centerpiece of the next conversation. [07:38]",
+      "note": "Deliberately absent from the Product Capability Matrix -> should resolve to UNKNOWN / REQUIRE_HUMAN_REVIEW."
+    },
+    {
+      "name": "reporting / bottleneck visibility",
+      "importance": "low",
+      "explicit": true,
+      "deprioritized": true,
+      "evidence": "Maybe briefly. I wouldn't spend half the demo on analytics. [12:18]"
+    }
+  ],
+  "deferred_not_requirements": [
+    {
+      "name": "data residency / security review",
+      "evidence": "We can deal with that separately rather than guessing today. [09:03]",
+      "note": "Explicitly deferred by the buyer -> must NOT be extracted as an active requirement or demo blocker."
     }
   ],
   "next_steps": [
     {
+      "type": "send_tailored_walkthrough",
+      "scope": "intake, triage, planning, documentation only",
+      "explicit": true,
+      "evidence": "Would it be useful if we sent you a short walkthrough focused specifically on the workflow we discussed today? ... If it's short. [16:47]"
+    },
+    {
       "type": "technical_demo",
       "stakeholder": "Maya Chen",
-      "timeframe": "next week",
-      "explicit": true
+      "timeframe": "Wednesday afternoon, next week",
+      "explicit": true,
+      "evidence": "Let's get Maya involved. If you can show the intake-to-sprint workflow clearly, that's what I want her to see. [15:49]"
+    },
+    {
+      "type": "verify_sap_status",
+      "explicit": true,
+      "evidence": "I'll verify the current integration status before we show you anything there. [07:01]"
     }
   ]
 }
 ```
 
-Every extracted item must include the exact transcript evidence or character/line range.
+Every extracted item must include the exact transcript evidence or timestamp/line range.
+
+Two reliability-relevant nuances baked into this real transcript (design `extractRequirements.ts` and `planDemo.ts` to respect both):
+
+1. **Deferred topics are not requirements.** Data residency/security review was explicitly punted by the buyer ("deal with that separately") — it must not appear in `requirements`, must not block anything, and must not appear in the demo plan.
+2. **Verified-and-allowed does not automatically mean "gets a demo scene."** Jane explicitly scoped the next meeting to "the workflow" (intake → triage → sprint → docs) and said not to spend time on analytics. SSO and permissions can be marked `ALLOW` in the requirements table (they're GA) without needing their own walkthrough scene — they can instead be acknowledged in the follow-up email/CRM note rather than filmed.
 
 ---
 
@@ -280,7 +328,7 @@ Create:
 │   └── reset-demo.ts
 ├── data/
 │   ├── transcripts/
-│   │   └── acme-discovery.txt
+│   │   └── northstar-discovery.md
 │   ├── fixtures/
 │   └── traces/
 └── tests/
@@ -492,8 +540,8 @@ Create or locate:
 ## Company
 
 ```text
-Acme Corp
-Domain: acme-demo.example
+Northstar Labs
+Domain: northstarlabs-demo.example
 Industry: B2B SaaS
 Tier: Enterprise
 ```
@@ -501,7 +549,7 @@ Tier: Enterprise
 ## Deal
 
 ```text
-Name: Acme Platform Evaluation
+Name: Northstar Labs Platform Evaluation
 Amount: 250000
 Stage: Discovery
 Owner: Sarah Lee
@@ -541,7 +589,7 @@ Do not spend excessive time on CRM schema customization.
 Create workspace:
 
 ```text
-Acme Demo Environment
+Northstar Demo Environment
 ```
 
 Create projects:
@@ -648,26 +696,33 @@ Create channel:
 The agent posts:
 
 ```text
-ACME FOLLOW-UP READY
+NORTHSTAR LABS FOLLOW-UP READY
 
 Opportunity: $250k
 
 Verified:
 ✓ Work intake / triage
-✓ Sprint planning
+✓ Sprint / cycle planning
 ✓ Product documentation
+✓ Enterprise SSO
+
+Needs review:
+⚠ GitHub commit/PR linkage
+Reason: Not found in Product Capability Matrix
 
 Excluded:
 ⚠ SAP integration
-Reason: Roadmap
+Reason: Roadmap (Q1 2027)
 
 Prepared:
 ✓ Personalized walkthrough
 ✓ Follow-up email
-✓ VP Engineering technical meeting
+✓ VP Engineering technical meeting (Maya Chen, Wednesday afternoon)
 
 Approve customer-facing actions?
 ```
+
+This matches `data/seed/slack.json` exactly — keep both in sync if either changes.
 
 MVP:
 
@@ -692,7 +747,7 @@ Expected:
 
 ```json
 {
-  "prospect": "Acme Corp",
+  "prospect": "Northstar Labs",
   "opportunityValue": 250000,
   "allowedCapabilities": [
     "work intake / triage",
@@ -796,7 +851,7 @@ The video should contain:
 Example opening text:
 
 ```text
-Acme mentioned that incoming engineering requests are difficult to prioritize.
+Northstar Labs mentioned that incoming engineering requests are difficult to prioritize.
 
 Here is how your team could take a request from intake, through triage, and into the next engineering cycle.
 ```
@@ -851,7 +906,7 @@ For the live demo, use a deterministic configured date/time instead of trying to
 Example:
 
 ```text
-Title: Acme Technical Demo
+Title: Northstar Labs Technical Demo
 Attendees: controlled demo inboxes
 Duration: 30 minutes
 Description: Personalized technical follow-up based on discovery requirements
@@ -889,7 +944,7 @@ Customer follow-up:
 Sent
 
 Next technical step:
-Acme Technical Demo
+Northstar Labs Technical Demo
 <calendar event id>
 ```
 
@@ -908,7 +963,7 @@ Example structure:
 ```json
 {
   "runId": "...",
-  "prospect": "Acme Corp",
+  "prospect": "Northstar Labs",
   "steps": [
     {
       "type": "requirement_extracted",
@@ -958,7 +1013,7 @@ Suggested sections:
 ## Header
 
 ```text
-Acme Corp
+Northstar Labs
 $250k Opportunity
 Discovery → Personalized Technical Follow-Up
 ```
@@ -1391,14 +1446,14 @@ Say:
 Every enterprise discovery call is personalized. The demo that follows usually isn't. Solutions Engineers spend hours translating buyer requirements into tailored product demos.
 ```
 
-Show the Acme transcript.
+Show the Northstar Labs transcript.
 
 ## 0:12–0:32
 
 Show:
 
 ```text
-Acme Corp
+Northstar Labs
 $250k opportunity
 ```
 
@@ -1489,7 +1544,7 @@ End.
 
 Do not consider the MVP done unless all are true:
 
-- [ ] sample transcript produces the expected four requirements
+- [ ] real transcript produces the expected requirement set (see Section 2), including the deliberate UNKNOWN case (GitHub linkage) and the deferred non-requirement (data residency)
 - [ ] SAP is deterministically blocked
 - [ ] blocked capabilities never enter the demo plan
 - [ ] every demo scene has buyer evidence
@@ -1522,7 +1577,7 @@ Do not build:
 - arbitrary browser-use exploration
 - a generic video editor
 - production-grade auth
-- multiple prospect scenarios before the Acme scenario is polished
+- multiple prospect scenarios before the Northstar Labs scenario is polished
 - an elaborate design system
 
 The project wins by making one scenario excellent.

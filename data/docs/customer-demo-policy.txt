@@ -1,0 +1,9 @@
+CUSTOMER DEMO POLICY
+
+1. GA capabilities may be demonstrated as available.
+2. Beta capabilities may be demonstrated only if clearly labeled as beta and explicitly approved by a human.
+3. Roadmap capabilities must not be presented as currently available.
+4. Unsupported capabilities must not be demonstrated.
+5. If capability status cannot be verified, stop and request human confirmation.
+6. Customer-facing claims must be grounded in the current Product Capability Matrix.
+7. Prospect requests do not constitute product evidence.

@@ -1,0 +1,83 @@
+import type { CapabilityDecision, DemoPlan, DemoScene } from "@/domain/schema";
+
+/**
+ * Capabilities eligible for a filmed walkthrough scene. Being ALLOWED is not
+ * sufficient on its own - the buyer explicitly scoped the next demo to the
+ * core intake -> triage -> sprint -> docs workflow, so capabilities like SSO
+ * or permissions can be ALLOW in the requirements table without getting a
+ * scene. A capability only becomes a scene if we have an actual product
+ * route to show for it.
+ */
+const SCENE_CONFIG: Record<
+  string,
+  { title: string; productRoute: string; objective: string; narration: string }
+> = {
+  "work intake / triage": {
+    title: "Capture and triage incoming work",
+    productRoute: "/workspace/northstar/projects/customer-requests",
+    objective: "Show a request entering one consistent front door and getting triaged.",
+    narration:
+      "Northstar mentioned that incoming engineering requests are hard to triage. Here is how a request gets captured and triaged in one place.",
+  },
+  "sprint / cycle planning with preserved context": {
+    title: "Plan approved work in the next cycle",
+    productRoute: "/workspace/northstar/projects/customer-requests/cycles/q4-sprint-3",
+    objective: "Show an approved request moving into a planned cycle without losing its context.",
+    narration:
+      "Once triaged, approved work moves directly into the next cycle - no re-typing the request into another system.",
+  },
+  "documentation linked to execution": {
+    title: "Keep product context connected",
+    productRoute: "/workspace/northstar/projects/customer-requests/pages/intake-triage-playbook",
+    objective: "Show documentation linked directly to the execution work it describes.",
+    narration:
+      "The documentation an engineer needs stays linked to the work itself, instead of living in a separate system.",
+  },
+};
+
+export function planDemo(params: {
+  prospect: string;
+  opportunityValue: number;
+  decisions: CapabilityDecision[];
+}): DemoPlan {
+  const { prospect, opportunityValue, decisions } = params;
+
+  const allowedCapabilities = decisions
+    .filter((d) => d.decision === "ALLOW" || d.decision === "ALLOW_WITH_WARNING")
+    .map((d) => d.capability);
+
+  const blockedCapabilities = decisions
+    .filter((d) => d.decision === "BLOCK")
+    .map((d) => ({ name: d.capability, reason: d.reason }));
+
+  const reviewCapabilities = decisions
+    .filter((d) => d.decision === "REQUIRE_HUMAN_REVIEW")
+    .map((d) => ({ name: d.capability, reason: d.reason }));
+
+  const scenes: DemoScene[] = decisions
+    .filter((d) => d.includeInDemo)
+    .map((d, i) => {
+      const config = SCENE_CONFIG[d.capability.toLowerCase()];
+      if (!config) return null;
+      return {
+        id: `scene-${i + 1}`,
+        title: config.title,
+        capability: d.capability,
+        objective: config.objective,
+        productRoute: config.productRoute,
+        narration: config.narration,
+        buyerEvidence: d.buyerEvidence,
+        productEvidence: d.productEvidence,
+      } satisfies DemoScene;
+    })
+    .filter((scene): scene is DemoScene => scene !== null);
+
+  return {
+    prospect,
+    opportunityValue,
+    allowedCapabilities,
+    blockedCapabilities,
+    reviewCapabilities,
+    scenes,
+  };
+}

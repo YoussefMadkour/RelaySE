@@ -1,0 +1,8 @@
+{
+  "title": "Northstar Labs Technical Workflow Demo",
+  "attendees": ["$DEMO_PROSPECT_EMAIL", "$DEMO_STAKEHOLDER_EMAIL"],
+  "durationMinutes": 30,
+  "preferredWindow": "Wednesday afternoon",
+  "description": "Technical workflow walkthrough covering intake, triage, sprint planning, and linked documentation for Northstar Labs. Includes Maya Chen (VP Engineering) per discovery-call commitment.",
+  "sourceCommitment": "\"Let's aim for Wednesday afternoon then... Let's get Maya involved.\" (discovery transcript, explicit)"
+}

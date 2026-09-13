@@ -27,18 +27,25 @@ The core principle is **verified personalization**: the agent may personalize ag
 
 ## The Demo Scenario
 
-A prospect, **Acme Corp**, has just finished a discovery call.
+A prospect, **Northstar Labs**, has just finished a discovery call.
 
-They say:
+On the call, Jane Miller (Director of Engineering) and Alex Morgan (Engineering Operations Manager) say:
 
-> “Incoming engineering requests are difficult to triage. We need better sprint planning and we want documentation connected to the work. SAP integration is also important. I’d like our VP Engineering involved in a technical demo next week.”
+> "What I really want is one place where incoming engineering requests can be captured and triaged." — Jane [02:16]
+>
+> "I want to see how an approved request actually gets into the next sprint without losing all the context that came with it." — Jane [03:31]
+>
+> "I definitely want to understand whether you integrate with SAP... If it's not something you support today, that's okay. I just need to know that rather than seeing something in a demo that turns out to be roadmap." — Jane [06:43, 17:21]
+>
+> "Let's get Maya involved. If you can show the intake-to-sprint workflow clearly, that's what I want her to see." — Jane [15:49]
 
 The CRM says:
 
-- Company: Acme Corp
+- Company: Northstar Labs
 - Opportunity: $250,000
 - Stage: Discovery
 - Buyer: Jane Miller, Director of Engineering
+- Influencer: Alex Morgan, Engineering Operations Manager
 - Stakeholder: Maya Chen, VP Engineering
 
 The product capability matrix says:
@@ -48,6 +55,8 @@ The product capability matrix says:
 | Work intake / triage | GA | Allowed |
 | Sprint / cycle planning | GA | Allowed |
 | Product documentation | GA | Allowed |
+| Enterprise SSO | GA | Allowed (acknowledged, not a filmed scene) |
+| GitHub commit/PR linkage | Not in matrix | **Unknown — requires human review** |
 | SAP integration | Roadmap | **Do not demonstrate as available** |
 
 The agent therefore creates this demo plan:
@@ -56,9 +65,11 @@ The agent therefore creates this demo plan:
 2. Show triage and prioritization.
 3. Show moving approved work into a cycle/sprint.
 4. Show linked product documentation.
-5. **Exclude SAP integration** and flag it to the AE because it is not currently supported.
+5. **Exclude SAP integration** and flag it to the AE because it is roadmap, not available.
+6. **Flag GitHub linkage for human review** because it isn't in the capability matrix at all — the agent doesn't guess.
+7. Note SSO as verified/allowed in the follow-up without spending a video scene on it, because Jane explicitly scoped the next meeting to the core workflow.
 
-This is the core reliability moment: **buyer intent does not override product truth**.
+This is the core reliability moment: **buyer intent does not override product truth**, and **unverifiable ≠ unsupported** — the agent escalates instead of assuming either way.
 
 ---
 
@@ -233,7 +244,7 @@ HyperFrames produces a 30–45 second video containing:
 Slack receives a summary:
 
 ```text
-ACME FOLLOW-UP READY
+NORTHSTAR LABS FOLLOW-UP READY
 
 Opportunity: $250k
 
@@ -295,7 +306,7 @@ Capability Matrix / Work Intake
 Status: GA
 
 Product route:
-/workspace/acme/inbox
+/workspace/northstar/projects/customer-requests
 
 Decision:
 Allowed in personalized demo
@@ -351,12 +362,12 @@ assert every_demo_scene.has_product_evidence
 Create:
 
 **Company**
-- Acme Corp
+- Northstar Labs
 - Industry: B2B SaaS
 - Tier: Enterprise
 
 **Deal**
-- Name: Acme Platform Evaluation
+- Name: Northstar Labs Platform Evaluation
 - Amount: $250,000
 - Stage: Discovery
 - Owner: Sarah Lee
@@ -401,7 +412,7 @@ Unknown: require human confirmation.
 Create workspace:
 
 ```text
-Acme Demo Environment
+Northstar Demo Environment
 ```
 
 Projects:
@@ -490,7 +501,7 @@ Use a test calendar or a dedicated `Demo` calendar.
 │   └── reset-demo.ts
 ├── data/
 │   ├── transcripts/
-│   │   └── acme-discovery.txt
+│   │   └── northstar-discovery.md
 │   ├── fixtures/
 │   └── traces/
 └── tests/
@@ -561,7 +572,7 @@ npm run dev
 ### 5. Run the main scenario
 
 ```bash
-npm run demo:acme
+npm run demo:northstar
 ```
 
 ### 6. Run evaluations
@@ -598,7 +609,7 @@ One run should show:
 
 “Every enterprise discovery call is personalized. The demo that follows usually isn’t. Solutions Engineers spend hours translating buyer requirements into tailored product demos.”
 
-Show Acme’s discovery-call request.
+Show Northstar Labs' discovery-call request.
 
 **0:12–0:32**
 

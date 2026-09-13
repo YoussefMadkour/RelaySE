@@ -1,0 +1,57 @@
+{
+  "workspace": "Northstar Demo Environment",
+  "projects": [
+    { "name": "Customer Requests", "identifier": "CREQ", "description": "Intake/triage front door for incoming engineering requests from any channel." },
+    { "name": "Platform", "identifier": "PLAT", "description": "Core platform engineering team, likely pilot team." },
+    { "name": "Mobile", "identifier": "MOBL", "description": "Mobile engineering team." }
+  ],
+  "issues": [
+    {
+      "title": "Enterprise SSO access request",
+      "priority": "High",
+      "project": "Customer Requests",
+      "label": "Enterprise"
+    },
+    {
+      "title": "CSV export performance regression",
+      "priority": "High",
+      "project": "Platform",
+      "label": "Customer"
+    },
+    {
+      "title": "Mobile offline mode",
+      "priority": "Medium",
+      "project": "Mobile",
+      "label": "Feature Request"
+    },
+    {
+      "title": "Bulk user import",
+      "priority": "Medium",
+      "project": "Customer Requests",
+      "label": null
+    },
+    {
+      "title": "Audit-log export",
+      "priority": "Low",
+      "project": "Platform",
+      "label": null
+    }
+  ],
+  "cycle": {
+    "name": "Q4 Sprint 3",
+    "project": "Customer Requests",
+    "issuesIncluded": ["Enterprise SSO access request", "Bulk user import"],
+    "note": "Plane cycles are project-scoped, so this must live in the same project as the issues it contains. Kept in Customer Requests so the walkthrough shows one continuous story: intake -> triage -> same-project cycle -> linked docs."
+  },
+  "pages": [
+    { "title": "Intake & Triage Playbook", "linkedProject": "Customer Requests" },
+    { "title": "Release Planning", "linkedProject": "Platform" },
+    { "title": "Authentication Architecture", "linkedProject": "Platform" }
+  ],
+  "walkthroughRoute": [
+    { "scene": 1, "action": "open Customer Requests", "capability": "work intake / triage" },
+    { "scene": 2, "action": "open/triage Enterprise SSO access request", "capability": "work intake / triage" },
+    { "scene": 3, "action": "show Q4 Sprint 3", "capability": "sprint / cycle planning" },
+    { "scene": 4, "action": "show Intake & Triage Playbook (linked documentation)", "capability": "product documentation" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "accountName": "Northstar Labs",
+  "opportunity": {
+    "name": "Northstar Labs Platform Evaluation",
+    "amount": 250000,
+    "stage": "Discovery",
+    "owner": "Sarah Lee"
+  },
+  "contacts": [
+    { "name": "Jane Miller", "title": "Director of Engineering", "role": "primary_buyer" },
+    { "name": "Alex Morgan", "title": "Engineering Operations Manager", "role": "influencer" },
+    { "name": "Maya Chen", "title": "VP Engineering", "role": "technical_stakeholder" }
+  ],
+  "existingNextStep": "Technical workflow demo",
+  "existingMeeting": {
+    "title": "Northstar Labs Technical Workflow Demo",
+    "eventId": "mock-event-existing-001",
+    "attendees": ["$DEMO_PROSPECT_EMAIL", "$DEMO_STAKEHOLDER_EMAIL"]
+  }
+}

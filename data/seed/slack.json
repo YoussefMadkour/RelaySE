@@ -1,0 +1,4 @@
+{
+  "channel": "#demo-approvals",
+  "approvalMessageTemplate": "NORTHSTAR LABS FOLLOW-UP READY\n\nOpportunity: $250k\n\nVerified:\n✓ Work intake / triage\n✓ Sprint / cycle planning\n✓ Product documentation\n✓ Enterprise SSO\n\nNeeds review:\n⚠ GitHub commit/PR linkage\nReason: Not found in Product Capability Matrix\n\nExcluded:\n⚠ SAP integration\nReason: Roadmap (Q1 2027)\n\nPrepared:\n✓ Personalized walkthrough\n✓ Follow-up email\n✓ VP Engineering technical meeting (Maya Chen, Wednesday afternoon)\n\nApprove customer-facing actions?"
+}
