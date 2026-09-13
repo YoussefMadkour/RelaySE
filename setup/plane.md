@@ -47,6 +47,16 @@ Run via `node --env-file=.env.local scripts/seed-plane.mjs` (idempotent, safe to
 - 1 cycle "Q4 Sprint 3" (in Customer Requests) containing 2 issues
 - 3 pages with placeholder content
 
+## Playwright capture (browser session, not the API key)
+
+The `PLANE_API_KEY` only authenticates REST calls — Playwright screenshot capture needs an actual logged-in browser session. `scripts/plane-login.mjs` (using `PLANE_EMAIL`/`PLANE_PASSWORD` in `.env.local`) logs in once and saves a reusable session to `data/.auth/plane.json` (gitignored — contains live auth cookies). Re-run it if the session expires.
+
+**Gotcha found live:** Plane's login form is two-step and revealed dynamically — the initial page only has an email field; the password field only appears in the DOM after filling email and clicking Continue. Selectors: `input#email` → click `button:has-text("Continue")` → `input#password` appears → fill → click `button:has-text("Continue")` again.
+
+**Bigger gotcha, real reliability bug caught and fixed:** Plane is an SPA. Navigating to a project/cycle/page that doesn't exist (bad ID, deleted resource, or an expired session redirected to login) still returns **HTTP 200** with the app shell — the actual failure ("Project not found", a login screen) only appears in the client-rendered content. A capture check that only looks at `response.ok()` would silently accept a "Project not found" screenshot as a valid capture. Fixed in `src/capture/playwright.ts` by checking the rendered body text for not-found/sign-in patterns after the page settles, and throwing (with **zero** screenshot file written) if detected — verified both that a bad project ID now correctly throws and writes nothing, and that the 3 real scenes still capture correctly with the check in place.
+
+**Also found:** `networkidle` as a wait strategy reliably times out on Plane (persistent background websocket/polling connections never go fully idle). Fixed by using `domcontentloaded` + a best-effort short `networkidle` window (swallowed if it times out) + a fixed settle delay.
+
 ## Known cleanup item (not automated — do it in the UI)
 
 Plane auto-generates its own onboarding project on workspace creation, confusingly also named "Northstar Demo Environment" (full of Plane's own placeholder emoji/cover-image content). It is **not** part of our seed data. Archive or delete it before recording the demo so it doesn't show up as a stray 4th project. I didn't delete it via API since that's a live, irreversible action on your workspace — say the word if you want me to do it instead of you clicking through the UI.

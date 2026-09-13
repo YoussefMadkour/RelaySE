@@ -80,13 +80,23 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
         <h2 className="text-lg font-semibold text-gray-900">Demo Plan</h2>
         {trace.demoPlan && trace.demoPlan.scenes.length > 0 ? (
           <ol className="mt-3 space-y-4">
-            {trace.demoPlan.scenes.map((scene, i) => (
+            {trace.demoPlan.scenes.map((scene, i) => {
+              const capture = trace.captures.find((c) => c.sceneId === scene.id);
+              return (
               <li key={scene.id} className="rounded-lg border border-gray-200 bg-white p-4">
                 <div className="text-xs font-bold uppercase tracking-wide text-indigo-600">
                   Scene {i + 1}
                 </div>
                 <div className="mt-1 font-semibold text-gray-900">{scene.title}</div>
                 <p className="mt-1 text-sm text-gray-600">{scene.narration}</p>
+                {capture && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={capture.publicUrl}
+                    alt={scene.title}
+                    className="mt-3 w-full rounded-md border border-gray-200"
+                  />
+                )}
                 <details className="mt-2 text-xs text-gray-500">
                   <summary className="cursor-pointer">Evidence chain</summary>
                   <div className="mt-2 space-y-1">
@@ -104,12 +114,27 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
                   </div>
                 </details>
               </li>
-            ))}
+              );
+            })}
           </ol>
         ) : (
           <p className="mt-3 text-sm text-gray-500">No scenes generated.</p>
         )}
       </section>
+
+      {trace.demoPlan && trace.demoPlan.scenes.length > 0 && (
+        <section className="mt-8">
+          <h2 className="text-lg font-semibold text-gray-900">Personalized Walkthrough</h2>
+          <video
+            controls
+            className="mt-3 w-full rounded-lg border border-gray-200"
+            src="/media/northstar-walkthrough.mp4"
+          />
+          <p className="mt-2 text-xs text-gray-500">
+            35s &middot; generated from the 3 real captured scenes above &middot; built with HyperFrames
+          </p>
+        </section>
+      )}
 
       <section className="mt-8">
         <h2 className="text-lg font-semibold text-gray-900">Next Steps</h2>

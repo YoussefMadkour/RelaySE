@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { extractRequirements } from "@/agent/extractRequirements";
 import { verifyCapabilities } from "@/agent/verifyCapabilities";
@@ -7,8 +8,9 @@ import { planDemo } from "@/agent/planDemo";
 import { getCRMConnector } from "@/connectors/hubspot";
 import { getDriveConnector } from "@/connectors/drive";
 import { connectorMode } from "@/connectors/types";
+import { captureScenes } from "@/capture/playwright";
 import { saveRunTrace } from "@/trace/store";
-import type { RunTrace, TraceStep } from "@/trace/schema";
+import type { RunTrace, TraceStep, CaptureResultTrace } from "@/trace/schema";
 
 export async function runDiscoveryToDemoAgent(params: {
   accountName: string;
@@ -70,6 +72,28 @@ export async function runDiscoveryToDemoAgent(params: {
     scenes: demoPlan.scenes.length,
   });
 
+  let captures: CaptureResultTrace[] = [];
+  if (demoPlan.scenes.length > 0) {
+    const storageStatePath = path.join(process.cwd(), "data", ".auth", "plane.json");
+    if (!existsSync(storageStatePath)) {
+      throw new Error(
+        `No saved Plane session at ${storageStatePath}. Run "node --env-file=.env.local scripts/plane-login.mjs" first - ` +
+          "capture must not proceed without a real authenticated session, and must not fall back to a fake screenshot."
+      );
+    }
+    const publicDir = path.join(process.cwd(), "public", "screenshots", runId);
+    const results = await captureScenes(demoPlan.scenes, {
+      baseUrl: "https://app.plane.so",
+      storageStatePath,
+      outputDir: publicDir,
+    });
+    captures = results.map((r) => ({
+      ...r,
+      publicUrl: `/screenshots/${runId}/${path.basename(r.screenshotPath)}`,
+    }));
+    record("scenes_captured", { count: captures.length });
+  }
+
   const trace: RunTrace = {
     runId,
     prospect: opportunity.accountName,
@@ -80,6 +104,7 @@ export async function runDiscoveryToDemoAgent(params: {
     nextSteps: extraction.nextSteps,
     decisions,
     demoPlan,
+    captures,
     steps,
     actions: [],
   };

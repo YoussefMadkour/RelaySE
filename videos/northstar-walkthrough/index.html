@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Northstar Labs Walkthrough</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1c232e;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      :root {
+        --bg: #1c232e;
+        --bg-2: #232c3a;
+        --fg: #eef3f7;
+        --fg-dim: #9fb0c2;
+        --accent: #ee6c4d;
+        --accent-dim: #98c1d9;
+        --line: rgba(238, 243, 247, 0.14);
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+
+      /* The clip itself only owns timing + clipping. All visual fade tweens
+         target .scene-inner instead, per hyperframes lint
+         gsap_exit_missing_hard_kill: the runtime already manages a
+         class="clip" element's visibility off data-start/data-duration, so
+         tweening opacity on the clip element itself can leave stale state
+         under non-linear seeking. */
+      .scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .scene-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      /* ---- shared decoratives ---- */
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        opacity: 0.22;
+        will-change: transform;
+      }
+      .grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 96px 96px;
+        opacity: 0.35;
+      }
+
+      /* ---- content scenes (left copy / right screenshot) ---- */
+      .content-scene {
+        padding: 0 140px;
+        gap: 120px;
+      }
+      .copy-col {
+        position: relative;
+        z-index: 2;
+        width: 560px;
+        flex-shrink: 0;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .rule {
+        width: 90px;
+        height: 4px;
+        background: var(--accent);
+        transform-origin: left center;
+        margin-bottom: 34px;
+      }
+      .scene-title {
+        font-size: 68px;
+        font-weight: 900;
+        line-height: 1.08;
+        color: var(--fg);
+        letter-spacing: -0.02em;
+        margin-bottom: 30px;
+        max-width: 560px;
+      }
+      .scene-caption {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.55;
+        color: var(--fg-dim);
+        max-width: 520px;
+      }
+
+      .shot-col {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .shot-frame {
+        position: relative;
+        width: 880px;
+        height: 590px;
+        border-radius: 22px;
+        overflow: hidden;
+        background: #0e1218;
+        border: 2px solid rgba(238, 243, 247, 0.18);
+        box-shadow:
+          0 40px 90px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(0, 0, 0, 0.2);
+      }
+      .shot-chrome {
+        height: 40px;
+        background: #12161d;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 20px;
+        border-bottom: 1px solid rgba(238, 243, 247, 0.1);
+      }
+      .shot-chrome span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(238, 243, 247, 0.22);
+      }
+      .shot-world {
+        position: absolute;
+        inset: 40px 0 0 0;
+        overflow: hidden;
+        transform-origin: 50% 0%;
+      }
+      .shot-world img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+
+      /* ---- intro / cta full-bleed scenes ---- */
+      .statement-scene {
+        justify-content: center;
+        text-align: center;
+      }
+      .statement-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .statement-text {
+        font-size: 72px;
+        font-weight: 700;
+        line-height: 1.28;
+        color: var(--fg);
+        letter-spacing: -0.01em;
+      }
+      .statement-text .accent {
+        color: var(--accent);
+      }
+      .wordmark {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--fg-dim);
+        text-transform: uppercase;
+        margin-top: 56px;
+      }
+      .wordmark .dot {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="35"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- ============ INTRO (0.0 - 3.5) ============ -->
+      <section id="scene-intro" class="scene clip" data-start="0" data-duration="3.5" data-track-index="1">
+        <div id="scene-intro-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-intro" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
+          <div class="grid-lines"></div>
+          <div class="statement-inner">
+            <div class="statement-text" id="intro-text">
+              Northstar Labs mentioned that <span class="accent">incoming engineering requests</span>
+              are difficult to prioritize.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 1: Intake & Triage (3.0 - 12.5) ============ -->
+      <section id="scene-1" class="scene clip" data-start="3.0" data-duration="9.5" data-track-index="1">
+        <div id="scene-1-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-1" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
+          <div class="grid-lines"></div>
+
+          <div class="copy-col">
+            <div class="eyebrow" id="eyebrow-1" data-layout-allow-overlap>Step 1 / 3</div>
+            <div class="rule" id="rule-1"></div>
+            <div class="scene-title" id="title-1">Capture and triage incoming work</div>
+            <div class="scene-caption" id="caption-1">
+              Northstar mentioned that incoming engineering requests are hard to triage. Here is how
+              a request gets captured and triaged in one place.
+            </div>
+          </div>
+          <div class="shot-col">
+            <div class="shot-frame" id="shot-frame-1">
+              <div class="shot-chrome"><span></span><span></span><span></span></div>
+              <div class="shot-world" id="shot-world-1" data-layout-allow-overflow>
+                <img src="assets/scene-1-intake.png" alt="Customer Requests work items" data-layout-allow-overflow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 2: Sprint Planning (12.0 - 21.5) ============ -->
+      <section id="scene-2" class="scene clip" data-start="12.0" data-duration="9.5" data-track-index="1">
+        <div id="scene-2-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-2" data-layout-allow-overflow style="width: 760px; height: 760px; bottom: -280px; right: -200px; left: auto; top: auto"></div>
+          <div class="grid-lines"></div>
+
+          <div class="copy-col">
+            <div class="eyebrow" id="eyebrow-2" data-layout-allow-overlap>Step 2 / 3</div>
+            <div class="rule" id="rule-2"></div>
+            <div class="scene-title" id="title-2">Plan approved work in the next cycle</div>
+            <div class="scene-caption" id="caption-2">
+              Once triaged, approved work moves directly into the next cycle - no re-typing the
+              request into another system.
+            </div>
+          </div>
+          <div class="shot-col">
+            <div class="shot-frame" id="shot-frame-2">
+              <div class="shot-chrome"><span></span><span></span><span></span></div>
+              <div class="shot-world" id="shot-world-2" data-layout-allow-overflow>
+                <img src="assets/scene-2-cycle.png" alt="Q4 Sprint 3 cycle" data-layout-allow-overflow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 3: Documentation (21.0 - 30.5) ============ -->
+      <section id="scene-3" class="scene clip" data-start="21.0" data-duration="9.5" data-track-index="1">
+        <div id="scene-3-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-3" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
+          <div class="grid-lines"></div>
+
+          <div class="copy-col">
+            <div class="eyebrow" id="eyebrow-3" data-layout-allow-overlap>Step 3 / 3</div>
+            <div class="rule" id="rule-3"></div>
+            <div class="scene-title" id="title-3">Keep product context connected</div>
+            <div class="scene-caption" id="caption-3">
+              The documentation an engineer needs stays linked to the work itself, instead of living
+              in a separate system.
+            </div>
+          </div>
+          <div class="shot-col">
+            <div class="shot-frame" id="shot-frame-3">
+              <div class="shot-chrome"><span></span><span></span><span></span></div>
+              <div class="shot-world" id="shot-world-3" data-layout-allow-overflow>
+                <img src="assets/scene-3-docs.png" alt="Intake & Triage Playbook page" data-layout-allow-overflow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CTA (30.5 - 35.0) — hard cut from scene-3, no crossfade overlap: their text zones collide ============ -->
+      <section id="scene-cta" class="scene clip" data-start="30.5" data-duration="4.5" data-track-index="1">
+        <div id="scene-cta-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-cta" data-layout-allow-overflow style="width: 900px; height: 900px; bottom: -320px; left: 50%; margin-left: -450px; top: auto"></div>
+          <div class="grid-lines"></div>
+          <div class="statement-inner">
+            <div class="statement-text" id="cta-text">
+              Looking forward to the technical walkthrough with <span class="accent">Maya</span> this
+              week.
+            </div>
+            <div class="wordmark">FLOWBOARD<span class="dot"> &middot; </span>Solutions Engineering</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ---------- helpers ----------
+      // Fades + a hard kill exactly at the boundary, so non-linear seeking
+      // right at/after the exit never reads a stale mid-tween opacity.
+      function crossfadeIn(id, start, dur) {
+        tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: dur, ease: "power1.out" }, start);
+      }
+      function crossfadeOut(id, endTime, dur) {
+        tl.to(id, { opacity: 0, duration: dur, ease: "power1.in" }, endTime - dur);
+        tl.set(id, { opacity: 0 }, endTime);
+      }
+
+      // ---------- INTRO (0 - 3.5) ----------
+      tl.set("#scene-intro-inner", { opacity: 1 }, 0);
+      tl.from("#intro-text", { y: 36, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.15);
+      tl.to("#glow-intro", { scale: 1.15, duration: 3.5, ease: "sine.inOut" }, 0);
+      crossfadeOut("#scene-intro-inner", 3.5, 0.5);
+
+      // ---------- SCENE 1 (3.0 - 12.5) ----------
+      crossfadeIn("#scene-1-inner", 3.0, 0.5);
+      tl.from("#eyebrow-1", { x: -24, opacity: 0, duration: 0.5, ease: "power2.out" }, 3.15);
+      tl.from("#rule-1", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 3.35);
+      tl.from("#title-1", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 3.45);
+      tl.from("#caption-1", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 3.65);
+      tl.from("#shot-frame-1", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 3.3);
+      tl.to("#shot-world-1", { scale: 1.07, duration: 9.2, ease: "sine.inOut" }, 3.3);
+      tl.to("#glow-1", { scale: 1.2, x: -30, duration: 9.5, ease: "sine.inOut" }, 3.0);
+      crossfadeOut("#scene-1-inner", 12.5, 0.5);
+
+      // ---------- SCENE 2 (12.0 - 21.5) ----------
+      crossfadeIn("#scene-2-inner", 12.0, 0.5);
+      tl.from("#eyebrow-2", { x: -24, opacity: 0, duration: 0.5, ease: "power2.out" }, 12.15);
+      tl.from("#rule-2", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 12.35);
+      tl.from("#title-2", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 12.45);
+      tl.from("#caption-2", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 12.65);
+      tl.from("#shot-frame-2", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 12.3);
+      tl.to("#shot-world-2", { scale: 1.07, duration: 9.2, ease: "sine.inOut" }, 12.3);
+      tl.to("#glow-2", { scale: 1.2, y: 30, duration: 9.5, ease: "sine.inOut" }, 12.0);
+      crossfadeOut("#scene-2-inner", 21.5, 0.5);
+
+      // ---------- SCENE 3 (21.0 - 30.5) ----------
+      crossfadeIn("#scene-3-inner", 21.0, 0.5);
+      tl.from("#eyebrow-3", { x: -24, opacity: 0, duration: 0.5, ease: "power2.out" }, 21.15);
+      tl.from("#rule-3", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 21.35);
+      tl.from("#title-3", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 21.45);
+      tl.from("#caption-3", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 21.65);
+      tl.from("#shot-frame-3", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 21.3);
+      tl.to("#shot-world-3", { scale: 1.07, duration: 9.2, ease: "sine.inOut" }, 21.3);
+      tl.to("#glow-3", { scale: 1.2, x: -30, duration: 9.5, ease: "sine.inOut" }, 21.0);
+      crossfadeOut("#scene-3-inner", 30.5, 0.5);
+
+      // ---------- CTA (30.5 - 35.0) — hard cut, own fade-in only ----------
+      crossfadeIn("#scene-cta-inner", 30.5, 0.4);
+      tl.from("#cta-text", { y: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, 30.6);
+      tl.from(".wordmark", { opacity: 0, duration: 0.6, ease: "power2.out" }, 31.3);
+      tl.to("#glow-cta", { scale: 1.15, duration: 4.5, ease: "sine.inOut" }, 30.5);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

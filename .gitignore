@@ -34,3 +34,12 @@ npm-debug.log*
 # runtime data (keep seeded fixtures, drop generated run traces)
 data/traces/*.json
 !data/traces/.gitkeep
+
+# saved browser sessions (contains live auth cookies)
+data/.auth/
+
+# HyperFrames render output (timestamped, regeneratable - canonical copy lives in public/media/)
+videos/*/renders/
+
+# browser session state (contains live login cookies - never commit)
+data/.auth/

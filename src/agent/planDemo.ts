@@ -8,27 +8,35 @@ import type { CapabilityDecision, DemoPlan, DemoScene } from "@/domain/schema";
  * scene. A capability only becomes a scene if we have an actual product
  * route to show for it.
  */
+// Product routes point at the real, live-seeded Plane workspace
+// (app.plane.so/northstar-demo) - verified by authenticated Playwright
+// capture, not placeholder paths. See setup/plane.md for the underlying
+// project/cycle/page IDs.
+const CUSTOMER_REQUESTS_PROJECT = "7b9d1648-be2e-40c6-986a-4738a86ac839";
+const Q4_SPRINT_3_CYCLE = "6eb06f70-82f6-477b-9016-53c282281e7d";
+const INTAKE_TRIAGE_PLAYBOOK_PAGE = "0eb40c70-62a9-4793-a495-811d81ae209f";
+
 const SCENE_CONFIG: Record<
   string,
   { title: string; productRoute: string; objective: string; narration: string }
 > = {
   "work intake / triage": {
     title: "Capture and triage incoming work",
-    productRoute: "/workspace/northstar/projects/customer-requests",
+    productRoute: `/northstar-demo/projects/${CUSTOMER_REQUESTS_PROJECT}/issues/`,
     objective: "Show a request entering one consistent front door and getting triaged.",
     narration:
       "Northstar mentioned that incoming engineering requests are hard to triage. Here is how a request gets captured and triaged in one place.",
   },
   "sprint / cycle planning with preserved context": {
     title: "Plan approved work in the next cycle",
-    productRoute: "/workspace/northstar/projects/customer-requests/cycles/q4-sprint-3",
+    productRoute: `/northstar-demo/projects/${CUSTOMER_REQUESTS_PROJECT}/cycles/${Q4_SPRINT_3_CYCLE}/`,
     objective: "Show an approved request moving into a planned cycle without losing its context.",
     narration:
       "Once triaged, approved work moves directly into the next cycle - no re-typing the request into another system.",
   },
   "documentation linked to execution": {
     title: "Keep product context connected",
-    productRoute: "/workspace/northstar/projects/customer-requests/pages/intake-triage-playbook",
+    productRoute: `/northstar-demo/projects/${CUSTOMER_REQUESTS_PROJECT}/pages/${INTAKE_TRIAGE_PLAYBOOK_PAGE}/`,
     objective: "Show documentation linked directly to the execution work it describes.",
     narration:
       "The documentation an engineer needs stays linked to the work itself, instead of living in a separate system.",

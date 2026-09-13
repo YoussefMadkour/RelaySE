@@ -15,6 +15,15 @@ export const TraceStepSchema = z.object({
 });
 export type TraceStep = z.infer<typeof TraceStepSchema>;
 
+export const CaptureResultSchema = z.object({
+  sceneId: z.string(),
+  screenshotPath: z.string(),
+  publicUrl: z.string(),
+  route: z.string(),
+  capturedAt: z.string(),
+});
+export type CaptureResultTrace = z.infer<typeof CaptureResultSchema>;
+
 export const RunTraceSchema = z.object({
   runId: z.string(),
   prospect: z.string(),
@@ -25,6 +34,7 @@ export const RunTraceSchema = z.object({
   nextSteps: z.array(NextStepSchema),
   decisions: z.array(CapabilityDecisionSchema),
   demoPlan: DemoPlanSchema.nullable(),
+  captures: z.array(CaptureResultSchema).default([]),
   steps: z.array(TraceStepSchema),
   actions: z.array(ExternalActionSchema),
 });
