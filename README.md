@@ -73,10 +73,6 @@ The agent's actual, live-run output: 3 verified capabilities become filmed scene
 
 ![Approval and actions](docs/screenshots/05-approval-actions.png)
 
-**Responsive mobile layout:**
-
-<img src="docs/screenshots/06-mobile-home.png" alt="Mobile responsive layout" width="360">
-
 ---
 
 ## 4. External Apps Used (all 5 required, all verified live)
@@ -250,7 +246,7 @@ npm run eval
 
 **[▶ Watch the demo](docs/demo-video.mp4)** — 1:44, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
 
-Note: GitHub opens repo-hosted video files in its blob viewer (with a native player) rather than playing inline in the README — click the link/thumbnail above to watch.
+Note: the file is too large for GitHub's inline blob preview, so clicking the link/thumbnail above opens a page that says it can't display the file — click **"View raw"** on that page to download it and play it locally.
 
 ---
 
