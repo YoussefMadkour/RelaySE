@@ -44,5 +44,12 @@ data/.auth/
 # HyperFrames render output (timestamped, regeneratable - canonical copy lives in public/media/)
 videos/*/renders/
 
+# HyperFrames internal tooling scratch (TTS staging, review captures) - not read by any composition
+videos/*/.media/
+videos/*/assets/review/
+videos/*/assets/voice/
+videos/*/audio_meta.json
+videos/*/audio_request.json
+
 # browser session state (contains live login cookies - never commit)
 data/.auth/

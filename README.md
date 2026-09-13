@@ -6,9 +6,9 @@
 
 <p align="center">
   <a href="docs/demo-video.mp4">
-    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:44 demo video" width="720">
+    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:53 demo video" width="720">
     <br>
-    <strong>▶ Watch the 1:44 demo video</strong>
+    <strong>▶ Watch the 1:53 demo video</strong>
   </a>
 </p>
 
@@ -240,11 +240,13 @@ npm run eval
 
 <p align="center">
   <a href="docs/demo-video.mp4">
-    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:44 demo video" width="560">
+    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:53 demo video" width="560">
   </a>
 </p>
 
-**[▶ Watch the demo](docs/demo-video.mp4)** — 1:44, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
+**[▶ Watch the demo](docs/demo-video.mp4)** — 1:53, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
+
+The video opens by naming the actual problem — a discovery call surfaces exactly what a buyer needs and what would kill the deal, and what happens next is normally manual — then grounds it in a real quote from the Northstar Labs transcript, before walking through the orchestrator, verification, live capture, the generated walkthrough, human-gated approval, and the reliability results.
 
 Note: the file is too large for GitHub's inline blob preview, so clicking the link/thumbnail above opens a page that says it can't display the file — click **"View raw"** on that page to download it and play it locally.
 
