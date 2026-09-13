@@ -4,6 +4,14 @@
 
 **Built for the Multi-App AI Agent Hackathon (Comma Capital / Lemma AI, September 13, 2026).**
 
+<p align="center">
+  <a href="docs/demo-video.mp4">
+    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:44 demo video" width="720">
+    <br>
+    <strong>▶ Watch the 1:44 demo video</strong>
+  </a>
+</p>
+
 ## 1. Project Overview
 
 Enterprise discovery calls are highly personalized, but the follow-up usually is not. After every call, an AE or Solutions Engineer has to review requirements, check what the product really supports, decide what's safe to demonstrate, prepare a tailored demo, send the follow-up, schedule the next meeting, and update the CRM. This project automates that work — and refuses to fake the parts that require real verification.
@@ -230,7 +238,15 @@ npm run eval
 
 ## 9. Demo Video
 
-**[Watch the demo](docs/demo-video.mp4)** — 1:44, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
+<p align="center">
+  <a href="docs/demo-video.mp4">
+    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:44 demo video" width="560">
+  </a>
+</p>
+
+**[▶ Watch the demo](docs/demo-video.mp4)** — 1:44, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
+
+Note: GitHub opens repo-hosted video files in its blob viewer (with a native player) rather than playing inline in the README — click the link/thumbnail above to watch.
 
 ---
 
