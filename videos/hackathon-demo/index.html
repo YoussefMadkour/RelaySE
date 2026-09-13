@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>RelaySE Agent - Hackathon Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1c232e;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      :root {
+        --bg: #1c232e;
+        --fg: #eef3f7;
+        --fg-dim: #9fb0c2;
+        --accent: #ee6c4d;
+        --line: rgba(238, 243, 247, 0.14);
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .scene-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        opacity: 0.22;
+        will-change: transform;
+      }
+      .grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 96px 96px;
+        opacity: 0.35;
+      }
+
+      .content-scene {
+        padding: 0 140px;
+        gap: 120px;
+      }
+      .copy-col {
+        position: relative;
+        z-index: 2;
+        width: 560px;
+        flex-shrink: 0;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .rule {
+        width: 90px;
+        height: 4px;
+        background: var(--accent);
+        transform-origin: left center;
+        margin-bottom: 34px;
+      }
+      .scene-title {
+        font-size: 62px;
+        font-weight: 900;
+        line-height: 1.1;
+        color: var(--fg);
+        letter-spacing: -0.02em;
+        margin-bottom: 30px;
+        max-width: 560px;
+      }
+      .scene-caption {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 1.55;
+        color: var(--fg-dim);
+        max-width: 520px;
+      }
+
+      .shot-col {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .shot-frame {
+        position: relative;
+        width: 880px;
+        height: 590px;
+        border-radius: 22px;
+        overflow: hidden;
+        background: #0e1218;
+        border: 2px solid rgba(238, 243, 247, 0.18);
+        box-shadow:
+          0 40px 90px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(0, 0, 0, 0.2);
+      }
+      .shot-chrome {
+        height: 40px;
+        background: #12161d;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 20px;
+        border-bottom: 1px solid rgba(238, 243, 247, 0.1);
+      }
+      .shot-chrome span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(238, 243, 247, 0.22);
+      }
+      .shot-world {
+        position: absolute;
+        inset: 40px 0 0 0;
+        overflow: hidden;
+        transform-origin: 50% 0%;
+      }
+      .shot-world img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+
+      .statement-scene {
+        justify-content: center;
+        text-align: center;
+      }
+      .statement-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+      .quote-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 34px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--fg-dim);
+        max-width: 1200px;
+        margin: 0 auto 20px;
+      }
+      .quote-attribution {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 22px;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+        margin-bottom: 50px;
+      }
+      .statement-text {
+        font-size: 68px;
+        font-weight: 900;
+        line-height: 1.15;
+        color: var(--fg);
+        letter-spacing: -0.01em;
+      }
+      .statement-text .accent {
+        color: var(--accent);
+      }
+      .big-stat {
+        font-size: 150px;
+        font-weight: 900;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .stat-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 30px;
+        color: var(--fg);
+        margin-top: 12px;
+      }
+      .stat-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 24px;
+        color: var(--fg-dim);
+        max-width: 1000px;
+        margin: 40px auto 0;
+        line-height: 1.6;
+      }
+      .wordmark {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--fg-dim);
+        text-transform: uppercase;
+        margin-top: 56px;
+      }
+      .wordmark .dot {
+        color: var(--accent);
+      }
+
+      .video-label {
+        position: absolute;
+        top: 90px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 2;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 26px;
+        letter-spacing: 0.14em;
+        color: var(--accent);
+        text-transform: uppercase;
+      }
+      .video-frame {
+        position: absolute;
+        top: 190px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1500px;
+        height: 844px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 2px solid rgba(238, 243, 247, 0.18);
+        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+        background: #000;
+      }
+      .video-frame video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="120"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- ============ SCENE 1: Problem + title (0 - 14.5) ============ -->
+      <section id="scene-1" class="scene clip" data-start="0" data-duration="14.5" data-track-index="1">
+        <div id="scene-1-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-1" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
+          <div class="grid-lines"></div>
+          <div class="statement-inner">
+            <div class="quote-text" id="quote-1">
+              &ldquo;I definitely want to understand whether you integrate with SAP... I just need to
+              know rather than seeing something in a demo that turns out to be roadmap.&rdquo;
+            </div>
+            <div class="quote-attribution">— Jane, real discovery call transcript</div>
+            <div class="statement-text" id="title-1">Verified Discovery-to-Demo Agent</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 2: Requirements verification (14 - 34.5) ============ -->
+      <section id="scene-2" class="scene clip" data-start="14.0" data-duration="20.5" data-track-index="1">
+        <div id="scene-2-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-2" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
+          <div class="grid-lines"></div>
+          <div class="copy-col">
+            <div class="eyebrow" data-layout-allow-overlap>Step 1</div>
+            <div class="rule" id="rule-2"></div>
+            <div class="scene-title" id="title-2" data-layout-allow-overlap>Verify before you personalize</div>
+            <div class="scene-caption" id="caption-2" data-layout-allow-overlap>
+              The agent extracts requirements, then verifies each one against real product
+              documentation — before generating anything.
+            </div>
+          </div>
+          <div class="shot-col">
+            <div class="shot-frame" id="shot-frame-2">
+              <div class="shot-chrome"><span></span><span></span><span></span></div>
+              <div class="shot-world" id="shot-world-2" data-layout-allow-overflow>
+                <img src="assets/02-requirements.png" alt="Requirements verification table" data-layout-allow-overflow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 3: Demo plan + live capture (34 - 54.5) ============ -->
+      <section id="scene-3" class="scene clip" data-start="34.0" data-duration="20.5" data-track-index="1">
+        <div id="scene-3-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-3" data-layout-allow-overflow style="width: 760px; height: 760px; bottom: -280px; right: -200px; left: auto; top: auto"></div>
+          <div class="grid-lines"></div>
+          <div class="copy-col">
+            <div class="eyebrow" data-layout-allow-overlap>Step 2</div>
+            <div class="rule" id="rule-3"></div>
+            <div class="scene-title" id="title-3" data-layout-allow-overlap>Only verified capabilities become scenes</div>
+            <div class="scene-caption" id="caption-3" data-layout-allow-overlap>
+              Captured live, in real time, from the real seeded product — not a mockup.
+            </div>
+          </div>
+          <div class="shot-col">
+            <div class="shot-frame" id="shot-frame-3">
+              <div class="shot-chrome"><span></span><span></span><span></span></div>
+              <div class="shot-world" id="shot-world-3" data-layout-allow-overflow>
+                <img src="assets/03-demo-plan.png" alt="Demo plan with real Plane captures" data-layout-allow-overflow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 4: The generated walkthrough clip (54 - 74.5) ============ -->
+      <!-- No data-start here on purpose: the nested <video> below needs its
+           own data-start/data-media-start for source trimming, and a timed
+           ancestor would conflict with it (lint: video_nested_in_timed_element).
+           This wrapper's visibility is instead handled entirely by the manual
+           GSAP crossfade on #scene-4-inner below, same technique as every
+           other scene already uses for the smooth fade. -->
+      <section id="scene-4" class="scene" data-track-index="1">
+        <div id="scene-4-inner" class="scene-inner">
+          <div class="glow" id="glow-4" data-layout-allow-overflow style="width: 800px; height: 800px; top: 50%; left: 50%; margin-left: -400px; margin-top: -400px"></div>
+          <div class="grid-lines"></div>
+          <div class="video-label" id="video-label-4">The Generated Walkthrough</div>
+          <div class="video-frame" id="video-frame-4">
+            <video
+              id="clip-4"
+              class="clip"
+              src="assets/northstar-walkthrough.mp4"
+              data-start="54.5"
+              data-duration="18"
+              data-media-start="3.5"
+              data-track-index="2"
+              muted
+              playsinline
+              data-layout-allow-overflow
+            ></video>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 5: Approval + real actions (74 - 94.5) ============ -->
+      <section id="scene-5" class="scene clip" data-start="74.0" data-duration="20.5" data-track-index="1">
+        <div id="scene-5-inner" class="scene-inner content-scene">
+          <div class="glow" id="glow-5" data-layout-allow-overflow style="width: 760px; height: 760px; top: -260px; right: -200px; left: auto"></div>
+          <div class="grid-lines"></div>
+          <div class="copy-col">
+            <div class="eyebrow" data-layout-allow-overlap>Step 3</div>
+            <div class="rule" id="rule-5"></div>
+            <div class="scene-title" id="title-5">Nothing customer-facing without approval</div>
+            <div class="scene-caption" id="caption-5">
+              Once approved: a real email sends, a real calendar invite is created, a real CRM record
+              updates.
+            </div>
+          </div>
+          <div class="shot-col">
+            <div class="shot-frame" id="shot-frame-5">
+              <div class="shot-chrome"><span></span><span></span><span></span></div>
+              <div class="shot-world" id="shot-world-5" data-layout-allow-overflow>
+                <img src="assets/05-approval-actions.png" alt="Slack approval and real actions" data-layout-allow-overflow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 6: Reliability stat (94 - 110.5) ============ -->
+      <section id="scene-6" class="scene clip" data-start="94.0" data-duration="16.5" data-track-index="1">
+        <div id="scene-6-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-6" data-layout-allow-overflow style="width: 900px; height: 900px; top: -300px; left: 50%; margin-left: -450px"></div>
+          <div class="grid-lines"></div>
+          <div class="statement-inner">
+            <div class="eyebrow" id="eyebrow-6" style="text-align:center">Reliability</div>
+            <div class="big-stat" id="stat-6">12 / 12</div>
+            <div class="stat-label">deterministic policy evals passing</div>
+            <div class="stat-sub" id="stat-sub-6">
+              3 real bugs found and fixed by testing against the live LLM and live services — not
+              just mocks.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 7: Closing (110 - 120) ============ -->
+      <section id="scene-7" class="scene clip" data-start="110.0" data-duration="10.0" data-track-index="1">
+        <div id="scene-7-inner" class="scene-inner statement-scene">
+          <div class="glow" id="glow-7" data-layout-allow-overflow style="width: 900px; height: 900px; bottom: -320px; left: 50%; margin-left: -450px; top: auto"></div>
+          <div class="grid-lines"></div>
+          <div class="statement-inner">
+            <div class="statement-text" id="closing-7">
+              A Solutions Engineer that never claims what it can't verify —
+              <span class="accent">and never acts without approval.</span>
+            </div>
+            <div class="wordmark">RelaySE Agent<span class="dot"> &middot; </span>Multi-App AI Agent Hackathon 2026</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      function crossfadeIn(id, start, dur) {
+        tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: dur, ease: "power1.out" }, start);
+      }
+      function crossfadeOut(id, endTime, dur) {
+        tl.to(id, { opacity: 0, duration: dur, ease: "power1.in" }, endTime - dur);
+        tl.set(id, { opacity: 0 }, endTime);
+      }
+
+      // ---------- SCENE 1 (0 - 14.5) ----------
+      tl.set("#scene-1-inner", { opacity: 1 }, 0);
+      tl.from("#quote-1", { y: 26, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+      tl.from("#title-1", { y: 26, opacity: 0, duration: 0.7, ease: "power3.out" }, 1.2);
+      tl.to("#glow-1", { scale: 1.15, duration: 14.5, ease: "sine.inOut" }, 0);
+      crossfadeOut("#scene-1-inner", 14.5, 0.5);
+
+      // ---------- SCENE 2 (14 - 34.5) ----------
+      crossfadeIn("#scene-2-inner", 14.0, 0.5);
+      tl.from("#rule-2", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 14.3);
+      tl.from("#title-2", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 14.4);
+      tl.from("#caption-2", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 14.6);
+      tl.from("#shot-frame-2", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 14.3);
+      tl.to("#shot-world-2", { scale: 1.07, duration: 20.2, ease: "sine.inOut" }, 14.3);
+      tl.to("#glow-2", { scale: 1.2, x: -30, duration: 20.5, ease: "sine.inOut" }, 14.0);
+      crossfadeOut("#scene-2-inner", 34.5, 0.5);
+
+      // ---------- SCENE 3 (34 - 54.5) ----------
+      crossfadeIn("#scene-3-inner", 34.0, 0.5);
+      tl.from("#rule-3", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 34.3);
+      tl.from("#title-3", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 34.4);
+      tl.from("#caption-3", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 34.6);
+      tl.from("#shot-frame-3", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 34.3);
+      tl.to("#shot-world-3", { scale: 1.07, duration: 20.2, ease: "sine.inOut" }, 34.3);
+      tl.to("#glow-3", { scale: 1.2, y: 30, duration: 20.5, ease: "sine.inOut" }, 34.0);
+      crossfadeOut("#scene-3-inner", 54.5, 0.5);
+
+      // ---------- SCENE 4 (54 - 74.5) ----------
+      crossfadeIn("#scene-4-inner", 54.0, 0.5);
+      tl.from("#video-label-4", { y: -16, opacity: 0, duration: 0.5, ease: "power2.out" }, 54.2);
+      tl.from("#video-frame-4", { scale: 0.96, opacity: 0, duration: 0.6, ease: "power3.out" }, 54.2);
+      tl.to("#glow-4", { scale: 1.1, duration: 20.5, ease: "sine.inOut" }, 54.0);
+      crossfadeOut("#scene-4-inner", 74.5, 0.5);
+
+      // ---------- SCENE 5 (74 - 94.5) ----------
+      crossfadeIn("#scene-5-inner", 74.0, 0.5);
+      tl.from("#rule-5", { scaleX: 0, duration: 0.45, ease: "power2.out" }, 74.3);
+      tl.from("#title-5", { y: 28, opacity: 0, duration: 0.6, ease: "power3.out" }, 74.4);
+      tl.from("#caption-5", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 74.6);
+      tl.from("#shot-frame-5", { x: 60, opacity: 0, duration: 0.7, ease: "power3.out" }, 74.3);
+      tl.to("#shot-world-5", { scale: 1.07, duration: 20.2, ease: "sine.inOut" }, 74.3);
+      tl.to("#glow-5", { scale: 1.2, x: -30, duration: 20.5, ease: "sine.inOut" }, 74.0);
+      crossfadeOut("#scene-5-inner", 94.5, 0.5);
+
+      // ---------- SCENE 6 (94 - 110.5) ----------
+      crossfadeIn("#scene-6-inner", 94.0, 0.5);
+      tl.from("#eyebrow-6", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out" }, 94.3);
+      tl.from("#stat-6", { scale: 0.85, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 94.6);
+      tl.from("#stat-sub-6", { y: 20, opacity: 0, duration: 0.55, ease: "power2.out" }, 95.3);
+      tl.to("#glow-6", { scale: 1.15, duration: 16.5, ease: "sine.inOut" }, 94.0);
+      crossfadeOut("#scene-6-inner", 110.5, 0.5);
+
+      // ---------- SCENE 7 (110 - 120) ----------
+      crossfadeIn("#scene-7-inner", 110.0, 0.4);
+      tl.from("#closing-7", { y: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, 110.4);
+      tl.from(".wordmark", { opacity: 0, duration: 0.6, ease: "power2.out" }, 111.1);
+      tl.to("#glow-7", { scale: 1.15, duration: 10.0, ease: "sine.inOut" }, 110.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
