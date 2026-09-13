@@ -73,6 +73,10 @@ The agent's actual, live-run output: 3 verified capabilities become filmed scene
 
 ![Approval and actions](docs/screenshots/05-approval-actions.png)
 
+**Responsive mobile layout:**
+
+<img src="docs/screenshots/06-mobile-home.png" alt="Mobile responsive layout" width="360">
+
 ---
 
 ## 4. External Apps Used (all 5 required, all verified live)
