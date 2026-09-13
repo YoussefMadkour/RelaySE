@@ -5,6 +5,7 @@ import path from "node:path";
 import { extractRequirements } from "@/agent/extractRequirements";
 import { verifyCapabilities } from "@/agent/verifyCapabilities";
 import { planDemo } from "@/agent/planDemo";
+import { requestApproval } from "@/agent/requestApproval";
 import { getCRMConnector } from "@/connectors/hubspot";
 import { getDriveConnector } from "@/connectors/drive";
 import { connectorMode } from "@/connectors/types";
@@ -30,7 +31,16 @@ export async function runDiscoveryToDemoAgent(params: {
   const transcript = await readFile(transcriptPath, "utf8");
   record("transcript_loaded", { path: transcriptRelativePath, length: transcript.length });
 
-  const extraction = await extractRequirements(transcript);
+  // Load product truth BEFORE extraction: the model needs the matrix's exact
+  // capability names as a controlled vocabulary, otherwise its own paraphrases
+  // ("sprint planning" vs. our "sprint / cycle planning") silently fail the
+  // downstream exact-match verification and get treated as unverifiable.
+  const drive = getDriveConnector();
+  const matrix = await drive.getCapabilityMatrix();
+  record("capability_matrix_loaded", { entries: matrix.length });
+  const knownCapabilities = [...new Set(matrix.map((m) => m.capability))];
+
+  const extraction = await extractRequirements(transcript, knownCapabilities);
   record("requirements_extracted", {
     count: extraction.requirements.length,
     requirements: extraction.requirements.map((r) => ({
@@ -46,10 +56,6 @@ export async function runDiscoveryToDemoAgent(params: {
     opportunityValue: opportunity.opportunity.amount,
     stage: opportunity.opportunity.stage,
   });
-
-  const drive = getDriveConnector();
-  const matrix = await drive.getCapabilityMatrix();
-  record("capability_matrix_loaded", { entries: matrix.length });
 
   const decisions = verifyCapabilities(extraction.requirements, matrix);
   for (const decision of decisions) {
@@ -94,6 +100,16 @@ export async function runDiscoveryToDemoAgent(params: {
     record("scenes_captured", { count: captures.length });
   }
 
+  // Posting the approval request IS the approval gate, not a customer-facing
+  // action - safe to do automatically. Nothing that reaches the prospect
+  // (Gmail, Calendar, HubSpot) happens until a human approves via the UI.
+  const approvalRequest = await requestApproval({
+    prospect: opportunity.accountName,
+    demoPlan,
+    nextSteps: extraction.nextSteps,
+  });
+  record("approval_requested", { channel: approvalRequest.channel, ts: approvalRequest.ts });
+
   const trace: RunTrace = {
     runId,
     prospect: opportunity.accountName,
@@ -105,6 +121,8 @@ export async function runDiscoveryToDemoAgent(params: {
     decisions,
     demoPlan,
     captures,
+    approvalStatus: "pending",
+    approvalRequest,
     steps,
     actions: [],
   };

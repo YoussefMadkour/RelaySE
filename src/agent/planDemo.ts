@@ -1,5 +1,15 @@
 import type { CapabilityDecision, DemoPlan, DemoScene } from "@/domain/schema";
 
+function dedupeByName<T extends { name: string }>(items: T[]): T[] {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    const key = item.name.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 /**
  * Capabilities eligible for a filmed walkthrough scene. Being ALLOWED is not
  * sufficient on its own - the buyer explicitly scoped the next demo to the
@@ -27,14 +37,14 @@ const SCENE_CONFIG: Record<
     narration:
       "Northstar mentioned that incoming engineering requests are hard to triage. Here is how a request gets captured and triaged in one place.",
   },
-  "sprint / cycle planning with preserved context": {
+  "sprint / cycle planning": {
     title: "Plan approved work in the next cycle",
     productRoute: `/northstar-demo/projects/${CUSTOMER_REQUESTS_PROJECT}/cycles/${Q4_SPRINT_3_CYCLE}/`,
     objective: "Show an approved request moving into a planned cycle without losing its context.",
     narration:
       "Once triaged, approved work moves directly into the next cycle - no re-typing the request into another system.",
   },
-  "documentation linked to execution": {
+  "product documentation": {
     title: "Keep product context connected",
     productRoute: `/northstar-demo/projects/${CUSTOMER_REQUESTS_PROJECT}/pages/${INTAKE_TRIAGE_PLAYBOOK_PAGE}/`,
     objective: "Show documentation linked directly to the execution work it describes.",
@@ -53,20 +63,31 @@ export function planDemo(params: {
   const allowedCapabilities = decisions
     .filter((d) => d.decision === "ALLOW" || d.decision === "ALLOW_WITH_WARNING")
     .map((d) => d.capability);
+  const dedupedAllowedCapabilities = [...new Set(allowedCapabilities)];
 
-  const blockedCapabilities = decisions
-    .filter((d) => d.decision === "BLOCK")
-    .map((d) => ({ name: d.capability, reason: d.reason }));
+  const blockedCapabilities = dedupeByName(
+    decisions.filter((d) => d.decision === "BLOCK").map((d) => ({ name: d.capability, reason: d.reason }))
+  );
 
-  const reviewCapabilities = decisions
-    .filter((d) => d.decision === "REQUIRE_HUMAN_REVIEW")
-    .map((d) => ({ name: d.capability, reason: d.reason }));
+  const reviewCapabilities = dedupeByName(
+    decisions
+      .filter((d) => d.decision === "REQUIRE_HUMAN_REVIEW")
+      .map((d) => ({ name: d.capability, reason: d.reason }))
+  );
 
+  // Multiple distinct buyer statements often map to the same capability (e.g.
+  // three separate remarks all about intake/triage) - that's fine for the
+  // requirements table, but must collapse to ONE demo scene per capability,
+  // not one per requirement, otherwise the walkthrough repeats the same scene.
+  const seenSceneCapabilities = new Set<string>();
   const scenes: DemoScene[] = decisions
     .filter((d) => d.includeInDemo)
     .map((d, i) => {
-      const config = SCENE_CONFIG[d.capability.toLowerCase()];
+      const key = d.capability.toLowerCase();
+      if (seenSceneCapabilities.has(key)) return null;
+      const config = SCENE_CONFIG[key];
       if (!config) return null;
+      seenSceneCapabilities.add(key);
       return {
         id: `scene-${i + 1}`,
         title: config.title,
@@ -78,12 +99,13 @@ export function planDemo(params: {
         productEvidence: d.productEvidence,
       } satisfies DemoScene;
     })
-    .filter((scene): scene is DemoScene => scene !== null);
+    .filter((scene): scene is DemoScene => scene !== null)
+    .map((scene, idx) => ({ ...scene, id: `scene-${idx + 1}` }));
 
   return {
     prospect,
     opportunityValue,
-    allowedCapabilities,
+    allowedCapabilities: dedupedAllowedCapabilities,
     blockedCapabilities,
     reviewCapabilities,
     scenes,

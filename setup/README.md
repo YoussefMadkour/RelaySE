@@ -7,7 +7,7 @@ Status and setup notes for each of the 7 external apps used by the Verified Disc
 | Plane | ✅ Seeded & verified idempotent | [plane.md](./plane.md) |
 | HubSpot | ✅ Seeded & verified idempotent | [hubspot.md](./hubspot.md) |
 | Slack | ✅ Bot installed & channel verified | [slack.md](./slack.md) |
-| Google (Drive + Gmail + Calendar) | 🟡 Credentials verified live; one manual step left | [google.md](./google.md) |
+| Google (Drive + Gmail + Calendar) | ✅ Verified live end-to-end (Drive folder populated, PDF download+extraction confirmed) | [google.md](./google.md) |
 | HyperFrames | ✅ Nothing to set up (built into this environment) | [hyperframes.md](./hyperframes.md) |
 
 ## Env var map
@@ -18,10 +18,9 @@ All credentials live in `.env.local` at the repo root (gitignored, never committ
 |---|---|---|
 | `PLANE_BASE_URL`, `PLANE_API_KEY`, `PLANE_WORKSPACE_SLUG`, `PLANE_WORKSPACE_ID` | Plane | ✅ set |
 | `HUBSPOT_ACCESS_TOKEN`, `HUBSPOT_BASE_URL` | HubSpot | ✅ set |
-| `ANTHROPIC_API_KEY` | LLM extraction/reasoning | ⬜ empty |
+| `OPENAI_API_KEY` | LLM extraction/reasoning | ⬜ empty |
 | `SLACK_BOT_TOKEN`, `SLACK_CHANNEL_ID` | Slack | ✅ set (`SLACK_APP_TOKEN` intentionally unused) |
-| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `GOOGLE_CALENDAR_ID` | Google | ✅ set & verified live |
-| `GOOGLE_DRIVE_FOLDER_ID` | Google Drive | ⬜ empty — needs the "Product Knowledge" folder created manually |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `GOOGLE_CALENDAR_ID`, `GOOGLE_DRIVE_FOLDER_ID` | Google | ✅ set & verified live |
 | `DEMO_PROSPECT_EMAIL`, `DEMO_STAKEHOLDER_EMAIL` | Gmail/Calendar recipients | ✅ set (Gmail `+` aliases on one real inbox) |
 | `HYPERFRAMES_CONFIG` | HyperFrames | not needed (see hyperframes.md) |
 
@@ -34,8 +33,7 @@ All credentials live in `.env.local` at the repo root (gitignored, never committ
 
 ## What's left
 
-1. **Create the "Product Knowledge" Drive folder** with the 2 docs from `data/docs/`, grab its folder ID, set `GOOGLE_DRIVE_FOLDER_ID` (see `setup/google.md`, "Remaining manual step").
-2. **`ANTHROPIC_API_KEY`** still needs to be set for the extraction/reasoning logic once app scaffolding starts.
+1. **`OPENAI_API_KEY`** — needed for the extraction/reasoning logic (`src/agent/extractRequirements.ts`, model `gpt-5.6-luna`). This is the only remaining credential; everything else across all 5 apps is set and verified live.
 
 ## Resolved follow-up
 

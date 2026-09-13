@@ -532,7 +532,7 @@ Required configuration will include keys/tokens for the LLM provider and the ext
 Example:
 
 ```text
-ANTHROPIC_API_KEY=
+OPENAI_API_KEY=
 
 HUBSPOT_ACCESS_TOKEN=
 

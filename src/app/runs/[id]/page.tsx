@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { loadRunTrace } from "@/trace/store";
+import { ApprovalPanel } from "./ApprovalPanel";
 
 const DECISION_STYLE: Record<string, string> = {
   ALLOW: "bg-green-100 text-green-800",
@@ -135,6 +136,13 @@ export default async function RunPage({ params }: { params: Promise<{ id: string
           </p>
         </section>
       )}
+
+      <ApprovalPanel
+        runId={trace.runId}
+        approvalStatus={trace.approvalStatus}
+        message={trace.approvalRequest?.message ?? null}
+        actions={trace.actions}
+      />
 
       <section className="mt-8">
         <h2 className="text-lg font-semibold text-gray-900">Next Steps</h2>

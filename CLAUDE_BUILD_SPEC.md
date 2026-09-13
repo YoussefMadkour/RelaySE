@@ -251,7 +251,7 @@ Recommended:
 Next.js
 TypeScript
 Tailwind
-Anthropic SDK or another LLM SDK
+OpenAI SDK (gpt-5.6-luna) or another LLM SDK
 Zod
 Playwright
 HubSpot API
@@ -1359,7 +1359,7 @@ At minimum:
 ```text
 LIVE_MODE=false
 
-ANTHROPIC_API_KEY=
+OPENAI_API_KEY=
 
 HUBSPOT_ACCESS_TOKEN=
 

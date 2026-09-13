@@ -35,6 +35,9 @@ npm-debug.log*
 data/traces/*.json
 !data/traces/.gitkeep
 
+# per-run screenshot captures (regeneratable; deliberate demo assets live in public/media/)
+public/screenshots/
+
 # saved browser sessions (contains live auth cookies)
 data/.auth/
 

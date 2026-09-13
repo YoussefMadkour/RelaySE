@@ -24,6 +24,13 @@ export const CaptureResultSchema = z.object({
 });
 export type CaptureResultTrace = z.infer<typeof CaptureResultSchema>;
 
+export const ApprovalRequestSchema = z.object({
+  channel: z.string(),
+  ts: z.string(),
+  message: z.string(),
+});
+export type ApprovalRequest = z.infer<typeof ApprovalRequestSchema>;
+
 export const RunTraceSchema = z.object({
   runId: z.string(),
   prospect: z.string(),
@@ -35,6 +42,8 @@ export const RunTraceSchema = z.object({
   decisions: z.array(CapabilityDecisionSchema),
   demoPlan: DemoPlanSchema.nullable(),
   captures: z.array(CaptureResultSchema).default([]),
+  approvalStatus: z.enum(["pending", "approved", "rejected"]).default("pending"),
+  approvalRequest: ApprovalRequestSchema.nullable().default(null),
   steps: z.array(TraceStepSchema),
   actions: z.array(ExternalActionSchema),
 });
