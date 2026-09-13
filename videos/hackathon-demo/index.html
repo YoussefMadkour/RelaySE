@@ -338,6 +338,10 @@
               <div class="app-pill" id="pill-5">Gmail</div>
               <div class="app-pill" id="pill-6">Calendar</div>
             </div>
+            <div class="stat-sub" id="flow-b">
+              It watches the call, checks what's actually true, builds a personalized demo — then
+              asks a human before it does anything customer-facing.
+            </div>
           </div>
         </div>
         <audio id="audio-b" data-start="10.7" data-duration="12.6" data-media-start="0" data-track-index="10" src="assets/narration/n2.wav"></audio>
@@ -507,6 +511,7 @@
         { y: 24, opacity: 0, duration: 0.5, ease: "back.out(1.6)", stagger: 0.12 },
         11.3
       );
+      tl.from("#flow-b", { y: 20, opacity: 0, duration: 0.6, ease: "power2.out" }, 12.4);
       tl.to("#glow-b", { scale: 1.15, x: -20, duration: 14.1, ease: "sine.inOut" }, 10.1);
       crossfadeOut("#scene-b-inner", 24.2, 0.5);
 
