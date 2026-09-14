@@ -73,6 +73,14 @@ The agent's actual, live-run output: 3 verified capabilities become filmed scene
 
 ![Approval and actions](docs/screenshots/05-approval-actions.png)
 
+**What the buyer actually receives — the real Gmail follow-up, with the personalized walkthrough attached:**
+
+![Real follow-up email in the buyer's inbox](docs/screenshots/06-followup-email.png)
+
+**...and the real Google Calendar invite created for the agreed technical follow-up:**
+
+![Real calendar invite in the buyer's inbox](docs/screenshots/07-calendar-invite.png)
+
 ---
 
 ## 4. External Apps Used (all 5 required, all verified live)
