@@ -1,0 +1,282 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "architecture",
+      "path": "assets/voice/architecture.wav",
+      "duration_s": 20.544,
+      "words": [
+        {
+          "id": "w0",
+          "text": "One",
+          "start": 0.04,
+          "end": 0.2
+        },
+        {
+          "id": "w1",
+          "text": "orchestrator",
+          "start": 0.2,
+          "end": 0.97
+        },
+        {
+          "id": "w2",
+          "text": "coordinates",
+          "start": 1.04,
+          "end": 1.78
+        },
+        {
+          "id": "w3",
+          "text": "the",
+          "start": 1.78,
+          "end": 1.98
+        },
+        {
+          "id": "w4",
+          "text": "workflow.",
+          "start": 1.98,
+          "end": 2.6
+        },
+        {
+          "id": "w5",
+          "text": "It",
+          "start": 2.64,
+          "end": 2.73
+        },
+        {
+          "id": "w6",
+          "text": "uses",
+          "start": 2.73,
+          "end": 2.99
+        },
+        {
+          "id": "w7",
+          "text": "the",
+          "start": 2.99,
+          "end": 3.18
+        },
+        {
+          "id": "w8",
+          "text": "transcript",
+          "start": 3.18,
+          "end": 3.84
+        },
+        {
+          "id": "w9",
+          "text": "and",
+          "start": 3.84,
+          "end": 4.03
+        },
+        {
+          "id": "w10",
+          "text": "saved",
+          "start": 4.09,
+          "end": 4.4
+        },
+        {
+          "id": "w11",
+          "text": "customer",
+          "start": 4.4,
+          "end": 4.76
+        },
+        {
+          "id": "w12",
+          "text": "and",
+          "start": 4.81,
+          "end": 5.04
+        },
+        {
+          "id": "w13",
+          "text": "product",
+          "start": 5.23,
+          "end": 5.44
+        },
+        {
+          "id": "w14",
+          "text": "data",
+          "start": 5.44,
+          "end": 5.8
+        },
+        {
+          "id": "w15",
+          "text": "to",
+          "start": 5.84,
+          "end": 5.96
+        },
+        {
+          "id": "w16",
+          "text": "verify",
+          "start": 5.96,
+          "end": 6.44
+        },
+        {
+          "id": "w17",
+          "text": "requirements.",
+          "start": 6.44,
+          "end": 7.6
+        },
+        {
+          "id": "w18",
+          "text": "Plane",
+          "start": 7.72,
+          "end": 8.06
+        },
+        {
+          "id": "w19",
+          "text": "supplies",
+          "start": 8.06,
+          "end": 8.65
+        },
+        {
+          "id": "w20",
+          "text": "real",
+          "start": 8.72,
+          "end": 8.96
+        },
+        {
+          "id": "w21",
+          "text": "product",
+          "start": 8.96,
+          "end": 9.48
+        },
+        {
+          "id": "w22",
+          "text": "captures.",
+          "start": 9.54,
+          "end": 10.34
+        },
+        {
+          "id": "w23",
+          "text": "Hyperframes",
+          "start": 10.38,
+          "end": 11.09
+        },
+        {
+          "id": "w24",
+          "text": "renders",
+          "start": 11.09,
+          "end": 11.57
+        },
+        {
+          "id": "w25",
+          "text": "the",
+          "start": 11.57,
+          "end": 11.76
+        },
+        {
+          "id": "w26",
+          "text": "walkthrough.",
+          "start": 11.76,
+          "end": 12.52
+        },
+        {
+          "id": "w27",
+          "text": "Slack",
+          "start": 12.82,
+          "end": 13.2
+        },
+        {
+          "id": "w28",
+          "text": "requests",
+          "start": 13.2,
+          "end": 13.88
+        },
+        {
+          "id": "w29",
+          "text": "review.",
+          "start": 13.88,
+          "end": 14.58
+        },
+        {
+          "id": "w30",
+          "text": "After",
+          "start": 14.7,
+          "end": 15.01
+        },
+        {
+          "id": "w31",
+          "text": "approval",
+          "start": 15.01,
+          "end": 15.55
+        },
+        {
+          "id": "w32",
+          "text": "in",
+          "start": 15.63,
+          "end": 15.72
+        },
+        {
+          "id": "w33",
+          "text": "Relay,",
+          "start": 15.72,
+          "end": 16.15
+        },
+        {
+          "id": "w34",
+          "text": "Gmail",
+          "start": 16.25,
+          "end": 16.82
+        },
+        {
+          "id": "w35",
+          "text": "sends,",
+          "start": 17.29,
+          "end": 17.46
+        },
+        {
+          "id": "w36",
+          "text": "calendar",
+          "start": 17.46,
+          "end": 18.01
+        },
+        {
+          "id": "w37",
+          "text": "schedules,",
+          "start": 18.01,
+          "end": 18.64
+        },
+        {
+          "id": "w38",
+          "text": "and",
+          "start": 18.68,
+          "end": 18.85
+        },
+        {
+          "id": "w39",
+          "text": "HubSpot",
+          "start": 18.85,
+          "end": 19.34
+        },
+        {
+          "id": "w40",
+          "text": "records",
+          "start": 19.34,
+          "end": 19.83
+        },
+        {
+          "id": "w41",
+          "text": "the",
+          "start": 19.83,
+          "end": 20.04
+        },
+        {
+          "id": "w42",
+          "text": "result.",
+          "start": 20.04,
+          "end": 20.68
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 20.544
+}

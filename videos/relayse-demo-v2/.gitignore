@@ -1,0 +1,11 @@
+# This self-contained edit needs its frozen narration and captured UI evidence.
+!assets/review/
+!assets/review/*.png
+!assets/voice/
+!assets/voice/*.wav
+!audio_request.json
+!audio_meta.json
+renders/
+.hyperframes/
+.thumbnails/
+.waveform-cache/

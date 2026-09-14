@@ -1,0 +1,1457 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01-problem",
+      "path": "assets/voice/01-problem.wav",
+      "duration_s": 14.144,
+      "words": [
+        {
+          "id": "w0",
+          "text": "A",
+          "start": 0.03,
+          "end": 0.08
+        },
+        {
+          "id": "w1",
+          "text": "buyer",
+          "start": 0.08,
+          "end": 0.5
+        },
+        {
+          "id": "w2",
+          "text": "finishes",
+          "start": 0.5,
+          "end": 1.18
+        },
+        {
+          "id": "w3",
+          "text": "a",
+          "start": 1.18,
+          "end": 1.22
+        },
+        {
+          "id": "w4",
+          "text": "discovery",
+          "start": 1.25,
+          "end": 1.96
+        },
+        {
+          "id": "w5",
+          "text": "call.",
+          "start": 2.36,
+          "end": 2.64
+        },
+        {
+          "id": "w6",
+          "text": "Your",
+          "start": 2.67,
+          "end": 2.91
+        },
+        {
+          "id": "w7",
+          "text": "sales",
+          "start": 2.91,
+          "end": 3.16
+        },
+        {
+          "id": "w8",
+          "text": "engineer",
+          "start": 3.27,
+          "end": 3.78
+        },
+        {
+          "id": "w9",
+          "text": "now",
+          "start": 3.78,
+          "end": 3.98
+        },
+        {
+          "id": "w10",
+          "text": "has",
+          "start": 3.98,
+          "end": 4.18
+        },
+        {
+          "id": "w11",
+          "text": "to",
+          "start": 4.18,
+          "end": 4.26
+        },
+        {
+          "id": "w12",
+          "text": "check",
+          "start": 4.3,
+          "end": 4.61
+        },
+        {
+          "id": "w13",
+          "text": "product",
+          "start": 4.61,
+          "end": 5.16
+        },
+        {
+          "id": "w14",
+          "text": "claims,",
+          "start": 5.16,
+          "end": 5.67
+        },
+        {
+          "id": "w15",
+          "text": "prepare",
+          "start": 5.73,
+          "end": 6.26
+        },
+        {
+          "id": "w16",
+          "text": "a",
+          "start": 6.26,
+          "end": 6.34
+        },
+        {
+          "id": "w17",
+          "text": "relevant",
+          "start": 6.34,
+          "end": 7
+        },
+        {
+          "id": "w18",
+          "text": "demo,",
+          "start": 7,
+          "end": 7.48
+        },
+        {
+          "id": "w19",
+          "text": "and",
+          "start": 7.6,
+          "end": 7.66
+        },
+        {
+          "id": "w20",
+          "text": "coordinate",
+          "start": 7.66,
+          "end": 8.01
+        },
+        {
+          "id": "w21",
+          "text": "the",
+          "start": 8.17,
+          "end": 8.44
+        },
+        {
+          "id": "w22",
+          "text": "follow-up.",
+          "start": 8.44,
+          "end": 9.64
+        },
+        {
+          "id": "w23",
+          "text": "That",
+          "start": 9.67,
+          "end": 9.88
+        },
+        {
+          "id": "w24",
+          "text": "means",
+          "start": 9.88,
+          "end": 10.16
+        },
+        {
+          "id": "w25",
+          "text": "repetitive",
+          "start": 10.27,
+          "end": 10.81
+        },
+        {
+          "id": "w26",
+          "text": "work",
+          "start": 10.81,
+          "end": 11.05
+        },
+        {
+          "id": "w27",
+          "text": "and",
+          "start": 11.05,
+          "end": 11.23
+        },
+        {
+          "id": "w28",
+          "text": "a",
+          "start": 11.23,
+          "end": 11.26
+        },
+        {
+          "id": "w29",
+          "text": "risk,",
+          "start": 11.31,
+          "end": 11.62
+        },
+        {
+          "id": "w30",
+          "text": "promising",
+          "start": 12.16,
+          "end": 12.2
+        },
+        {
+          "id": "w31",
+          "text": "something",
+          "start": 12.2,
+          "end": 12.75
+        },
+        {
+          "id": "w32",
+          "text": "the",
+          "start": 12.75,
+          "end": 12.93
+        },
+        {
+          "id": "w33",
+          "text": "product",
+          "start": 12.93,
+          "end": 13.36
+        },
+        {
+          "id": "w34",
+          "text": "cannot",
+          "start": 13.36,
+          "end": 13.71
+        },
+        {
+          "id": "w35",
+          "text": "do.",
+          "start": 13.81,
+          "end": 14.1
+        }
+      ]
+    },
+    {
+      "id": "02-solution",
+      "path": "assets/voice/02-solution.wav",
+      "duration_s": 16.235,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Relay",
+          "start": 0.04,
+          "end": 0.55
+        },
+        {
+          "id": "w1",
+          "text": "SE",
+          "start": 0.55,
+          "end": 0.77
+        },
+        {
+          "id": "w2",
+          "text": "is",
+          "start": 0.77,
+          "end": 0.99
+        },
+        {
+          "id": "w3",
+          "text": "an",
+          "start": 0.99,
+          "end": 1.21
+        },
+        {
+          "id": "w4",
+          "text": "AI",
+          "start": 1.21,
+          "end": 1.43
+        },
+        {
+          "id": "w5",
+          "text": "assistant",
+          "start": 1.43,
+          "end": 2.39
+        },
+        {
+          "id": "w6",
+          "text": "for",
+          "start": 2.52,
+          "end": 2.68
+        },
+        {
+          "id": "w7",
+          "text": "technical",
+          "start": 2.68,
+          "end": 3.4
+        },
+        {
+          "id": "w8",
+          "text": "sales",
+          "start": 3.4,
+          "end": 3.81
+        },
+        {
+          "id": "w9",
+          "text": "teams.",
+          "start": 3.81,
+          "end": 4.48
+        },
+        {
+          "id": "w10",
+          "text": "It",
+          "start": 4.52,
+          "end": 4.62
+        },
+        {
+          "id": "w11",
+          "text": "turns",
+          "start": 4.62,
+          "end": 4.98
+        },
+        {
+          "id": "w12",
+          "text": "a",
+          "start": 4.98,
+          "end": 5.05
+        },
+        {
+          "id": "w13",
+          "text": "call",
+          "start": 5.05,
+          "end": 5.34
+        },
+        {
+          "id": "w14",
+          "text": "transcript,",
+          "start": 5.34,
+          "end": 6.24
+        },
+        {
+          "id": "w15",
+          "text": "customer",
+          "start": 6.24,
+          "end": 6.87
+        },
+        {
+          "id": "w16",
+          "text": "context,",
+          "start": 7,
+          "end": 7.52
+        },
+        {
+          "id": "w17",
+          "text": "and",
+          "start": 7.56,
+          "end": 7.73
+        },
+        {
+          "id": "w18",
+          "text": "product",
+          "start": 7.73,
+          "end": 8.09
+        },
+        {
+          "id": "w19",
+          "text": "capability",
+          "start": 8.29,
+          "end": 8.89
+        },
+        {
+          "id": "w20",
+          "text": "data",
+          "start": 8.95,
+          "end": 9.24
+        },
+        {
+          "id": "w21",
+          "text": "into",
+          "start": 9.24,
+          "end": 9.62
+        },
+        {
+          "id": "w22",
+          "text": "a",
+          "start": 9.62,
+          "end": 9.71
+        },
+        {
+          "id": "w23",
+          "text": "verified",
+          "start": 9.71,
+          "end": 10.43
+        },
+        {
+          "id": "w24",
+          "text": "demo",
+          "start": 10.48,
+          "end": 10.85
+        },
+        {
+          "id": "w25",
+          "text": "plan.",
+          "start": 10.85,
+          "end": 11.45
+        },
+        {
+          "id": "w26",
+          "text": "Here,",
+          "start": 11.58,
+          "end": 12.05
+        },
+        {
+          "id": "w27",
+          "text": "Northstar",
+          "start": 12.05,
+          "end": 12.82
+        },
+        {
+          "id": "w28",
+          "text": "Labs",
+          "start": 12.82,
+          "end": 13.2
+        },
+        {
+          "id": "w29",
+          "text": "wants",
+          "start": 13.2,
+          "end": 13.43
+        },
+        {
+          "id": "w30",
+          "text": "to",
+          "start": 13.43,
+          "end": 13.53
+        },
+        {
+          "id": "w31",
+          "text": "see",
+          "start": 13.58,
+          "end": 13.72
+        },
+        {
+          "id": "w32",
+          "text": "how",
+          "start": 13.76,
+          "end": 13.92
+        },
+        {
+          "id": "w33",
+          "text": "incoming",
+          "start": 13.92,
+          "end": 14.29
+        },
+        {
+          "id": "w34",
+          "text": "requests",
+          "start": 14.49,
+          "end": 15
+        },
+        {
+          "id": "w35",
+          "text": "become",
+          "start": 15,
+          "end": 15.4
+        },
+        {
+          "id": "w36",
+          "text": "planned",
+          "start": 15.4,
+          "end": 15.85
+        },
+        {
+          "id": "w37",
+          "text": "work.",
+          "start": 15.85,
+          "end": 16.37
+        }
+      ]
+    },
+    {
+      "id": "03-verify",
+      "path": "assets/voice/03-verify.wav",
+      "duration_s": 17.173,
+      "words": [
+        {
+          "id": "w0",
+          "text": "The",
+          "start": 0.03,
+          "end": 0.26
+        },
+        {
+          "id": "w1",
+          "text": "buyer",
+          "start": 0.26,
+          "end": 0.68
+        },
+        {
+          "id": "w2",
+          "text": "also",
+          "start": 0.68,
+          "end": 1.04
+        },
+        {
+          "id": "w3",
+          "text": "asks",
+          "start": 1.04,
+          "end": 1.39
+        },
+        {
+          "id": "w4",
+          "text": "about",
+          "start": 1.39,
+          "end": 1.82
+        },
+        {
+          "id": "w5",
+          "text": "SAP",
+          "start": 1.82,
+          "end": 2.08
+        },
+        {
+          "id": "w6",
+          "text": "integration.",
+          "start": 2.08,
+          "end": 3.34
+        },
+        {
+          "id": "w7",
+          "text": "The",
+          "start": 3.37,
+          "end": 3.56
+        },
+        {
+          "id": "w8",
+          "text": "product",
+          "start": 3.56,
+          "end": 4.09
+        },
+        {
+          "id": "w9",
+          "text": "data",
+          "start": 4.09,
+          "end": 4.39
+        },
+        {
+          "id": "w10",
+          "text": "says",
+          "start": 4.39,
+          "end": 4.67
+        },
+        {
+          "id": "w11",
+          "text": "it",
+          "start": 4.69,
+          "end": 4.81
+        },
+        {
+          "id": "w12",
+          "text": "is",
+          "start": 4.9,
+          "end": 4.99
+        },
+        {
+          "id": "w13",
+          "text": "on",
+          "start": 4.99,
+          "end": 5.14
+        },
+        {
+          "id": "w14",
+          "text": "the",
+          "start": 5.14,
+          "end": 5.36
+        },
+        {
+          "id": "w15",
+          "text": "roadmap.",
+          "start": 5.4,
+          "end": 6.16
+        },
+        {
+          "id": "w16",
+          "text": "Relay",
+          "start": 6.19,
+          "end": 6.54
+        },
+        {
+          "id": "w17",
+          "text": "blocks",
+          "start": 6.54,
+          "end": 7.01
+        },
+        {
+          "id": "w18",
+          "text": "it",
+          "start": 7.01,
+          "end": 7.16
+        },
+        {
+          "id": "w19",
+          "text": "from",
+          "start": 7.16,
+          "end": 7.47
+        },
+        {
+          "id": "w20",
+          "text": "the",
+          "start": 7.47,
+          "end": 7.63
+        },
+        {
+          "id": "w21",
+          "text": "demo.",
+          "start": 7.72,
+          "end": 8.28
+        },
+        {
+          "id": "w22",
+          "text": "Supported",
+          "start": 8.31,
+          "end": 8.9
+        },
+        {
+          "id": "w23",
+          "text": "workflows",
+          "start": 8.9,
+          "end": 9.46
+        },
+        {
+          "id": "w24",
+          "text": "are",
+          "start": 9.5,
+          "end": 9.71
+        },
+        {
+          "id": "w25",
+          "text": "included.",
+          "start": 9.71,
+          "end": 10.5
+        },
+        {
+          "id": "w26",
+          "text": "Unknown",
+          "start": 10.53,
+          "end": 11.05
+        },
+        {
+          "id": "w27",
+          "text": "capabilities",
+          "start": 11.05,
+          "end": 11.97
+        },
+        {
+          "id": "w28",
+          "text": "go",
+          "start": 12.06,
+          "end": 12.14
+        },
+        {
+          "id": "w29",
+          "text": "to",
+          "start": 12.14,
+          "end": 12.25
+        },
+        {
+          "id": "w30",
+          "text": "human",
+          "start": 12.29,
+          "end": 12.68
+        },
+        {
+          "id": "w31",
+          "text": "review.",
+          "start": 12.68,
+          "end": 13.36
+        },
+        {
+          "id": "w32",
+          "text": "Every",
+          "start": 13.45,
+          "end": 13.73
+        },
+        {
+          "id": "w33",
+          "text": "decision",
+          "start": 13.73,
+          "end": 14.23
+        },
+        {
+          "id": "w34",
+          "text": "links",
+          "start": 14.23,
+          "end": 14.52
+        },
+        {
+          "id": "w35",
+          "text": "back",
+          "start": 14.54,
+          "end": 14.8
+        },
+        {
+          "id": "w36",
+          "text": "to",
+          "start": 14.8,
+          "end": 14.88
+        },
+        {
+          "id": "w37",
+          "text": "the",
+          "start": 14.88,
+          "end": 15.03
+        },
+        {
+          "id": "w38",
+          "text": "buyer's",
+          "start": 15.03,
+          "end": 15.31
+        },
+        {
+          "id": "w39",
+          "text": "words",
+          "start": 15.39,
+          "end": 15.98
+        },
+        {
+          "id": "w40",
+          "text": "and",
+          "start": 16.01,
+          "end": 16.17
+        },
+        {
+          "id": "w41",
+          "text": "product",
+          "start": 16.17,
+          "end": 16.61
+        },
+        {
+          "id": "w42",
+          "text": "evidence.",
+          "start": 16.61,
+          "end": 17.31
+        }
+      ]
+    },
+    {
+      "id": "04-walkthrough",
+      "path": "assets/voice/04-walkthrough.wav",
+      "duration_s": 16.085,
+      "words": [
+        {
+          "id": "w0",
+          "text": "The",
+          "start": 0.05,
+          "end": 0.22
+        },
+        {
+          "id": "w1",
+          "text": "plan",
+          "start": 0.22,
+          "end": 0.44
+        },
+        {
+          "id": "w2",
+          "text": "focuses",
+          "start": 0.53,
+          "end": 1.01
+        },
+        {
+          "id": "w3",
+          "text": "on",
+          "start": 1.02,
+          "end": 1.16
+        },
+        {
+          "id": "w4",
+          "text": "three",
+          "start": 1.16,
+          "end": 1.52
+        },
+        {
+          "id": "w5",
+          "text": "supported",
+          "start": 1.52,
+          "end": 2.2
+        },
+        {
+          "id": "w6",
+          "text": "workflows,",
+          "start": 2.2,
+          "end": 3.2
+        },
+        {
+          "id": "w7",
+          "text": "request",
+          "start": 3.25,
+          "end": 3.76
+        },
+        {
+          "id": "w8",
+          "text": "intake,",
+          "start": 3.76,
+          "end": 4.4
+        },
+        {
+          "id": "w9",
+          "text": "sprint",
+          "start": 4.4,
+          "end": 4.82
+        },
+        {
+          "id": "w10",
+          "text": "planning,",
+          "start": 4.82,
+          "end": 5.55
+        },
+        {
+          "id": "w11",
+          "text": "and",
+          "start": 5.55,
+          "end": 5.77
+        },
+        {
+          "id": "w12",
+          "text": "linked",
+          "start": 5.77,
+          "end": 6.06
+        },
+        {
+          "id": "w13",
+          "text": "documentation.",
+          "start": 6.43,
+          "end": 7.33
+        },
+        {
+          "id": "w14",
+          "text": "Real",
+          "start": 7.49,
+          "end": 7.7
+        },
+        {
+          "id": "w15",
+          "text": "product",
+          "start": 7.7,
+          "end": 8.17
+        },
+        {
+          "id": "w16",
+          "text": "screenshots",
+          "start": 8.17,
+          "end": 8.92
+        },
+        {
+          "id": "w17",
+          "text": "become",
+          "start": 8.92,
+          "end": 9.25
+        },
+        {
+          "id": "w18",
+          "text": "this",
+          "start": 9.37,
+          "end": 9.52
+        },
+        {
+          "id": "w19",
+          "text": "personalized",
+          "start": 9.52,
+          "end": 10.29
+        },
+        {
+          "id": "w20",
+          "text": "walkthrough.",
+          "start": 10.67,
+          "end": 11.44
+        },
+        {
+          "id": "w21",
+          "text": "The",
+          "start": 11.49,
+          "end": 11.53
+        },
+        {
+          "id": "w22",
+          "text": "buyer",
+          "start": 11.63,
+          "end": 11.88
+        },
+        {
+          "id": "w23",
+          "text": "gets",
+          "start": 11.97,
+          "end": 12.17
+        },
+        {
+          "id": "w24",
+          "text": "a",
+          "start": 12.17,
+          "end": 12.18
+        },
+        {
+          "id": "w25",
+          "text": "concrete",
+          "start": 12.25,
+          "end": 12.66
+        },
+        {
+          "id": "w26",
+          "text": "answer",
+          "start": 12.82,
+          "end": 13.11
+        },
+        {
+          "id": "w27",
+          "text": "to",
+          "start": 13.11,
+          "end": 13.25
+        },
+        {
+          "id": "w28",
+          "text": "their",
+          "start": 13.25,
+          "end": 13.58
+        },
+        {
+          "id": "w29",
+          "text": "question",
+          "start": 13.58,
+          "end": 14.15
+        },
+        {
+          "id": "w30",
+          "text": "with",
+          "start": 14.21,
+          "end": 14.42
+        },
+        {
+          "id": "w31",
+          "text": "unsupported",
+          "start": 14.42,
+          "end": 15.12
+        },
+        {
+          "id": "w32",
+          "text": "claims",
+          "start": 15.15,
+          "end": 15.37
+        },
+        {
+          "id": "w33",
+          "text": "left",
+          "start": 15.54,
+          "end": 15.8
+        },
+        {
+          "id": "w34",
+          "text": "out.",
+          "start": 15.8,
+          "end": 16.22
+        }
+      ]
+    },
+    {
+      "id": "05-approval",
+      "path": "assets/voice/05-approval.wav",
+      "duration_s": 15.424,
+      "words": [
+        {
+          "id": "w0",
+          "text": "The",
+          "start": 0.05,
+          "end": 0.09
+        },
+        {
+          "id": "w1",
+          "text": "follow-up",
+          "start": 0.22,
+          "end": 0.89
+        },
+        {
+          "id": "w2",
+          "text": "then",
+          "start": 0.89,
+          "end": 1.1
+        },
+        {
+          "id": "w3",
+          "text": "waits",
+          "start": 1.18,
+          "end": 1.53
+        },
+        {
+          "id": "w4",
+          "text": "for",
+          "start": 1.55,
+          "end": 1.78
+        },
+        {
+          "id": "w5",
+          "text": "a",
+          "start": 1.78,
+          "end": 1.84
+        },
+        {
+          "id": "w6",
+          "text": "human.",
+          "start": 1.84,
+          "end": 2.5
+        },
+        {
+          "id": "w7",
+          "text": "Relay",
+          "start": 2.55,
+          "end": 2.92
+        },
+        {
+          "id": "w8",
+          "text": "posts",
+          "start": 2.92,
+          "end": 3.34
+        },
+        {
+          "id": "w9",
+          "text": "a",
+          "start": 3.34,
+          "end": 3.42
+        },
+        {
+          "id": "w10",
+          "text": "review",
+          "start": 3.42,
+          "end": 3.93
+        },
+        {
+          "id": "w11",
+          "text": "request",
+          "start": 3.93,
+          "end": 4.38
+        },
+        {
+          "id": "w12",
+          "text": "to",
+          "start": 4.52,
+          "end": 4.69
+        },
+        {
+          "id": "w13",
+          "text": "Slack.",
+          "start": 5.01,
+          "end": 5.16
+        },
+        {
+          "id": "w14",
+          "text": "The",
+          "start": 5.21,
+          "end": 5.25
+        },
+        {
+          "id": "w15",
+          "text": "sales",
+          "start": 5.38,
+          "end": 5.76
+        },
+        {
+          "id": "w16",
+          "text": "engineer",
+          "start": 5.76,
+          "end": 6.36
+        },
+        {
+          "id": "w17",
+          "text": "approves",
+          "start": 6.36,
+          "end": 6.95
+        },
+        {
+          "id": "w18",
+          "text": "in",
+          "start": 6.95,
+          "end": 7.06
+        },
+        {
+          "id": "w19",
+          "text": "the",
+          "start": 7.06,
+          "end": 7.33
+        },
+        {
+          "id": "w20",
+          "text": "app.",
+          "start": 7.33,
+          "end": 7.82
+        },
+        {
+          "id": "w21",
+          "text": "In",
+          "start": 7.87,
+          "end": 7.92
+        },
+        {
+          "id": "w22",
+          "text": "this",
+          "start": 8.04,
+          "end": 8.25
+        },
+        {
+          "id": "w23",
+          "text": "recorded",
+          "start": 8.25,
+          "end": 8.84
+        },
+        {
+          "id": "w24",
+          "text": "run,",
+          "start": 8.84,
+          "end": 9.24
+        },
+        {
+          "id": "w25",
+          "text": "approval",
+          "start": 9.24,
+          "end": 9.7
+        },
+        {
+          "id": "w26",
+          "text": "was",
+          "start": 9.7,
+          "end": 10.33
+        },
+        {
+          "id": "w27",
+          "text": "followed",
+          "start": 10.33,
+          "end": 10.4
+        },
+        {
+          "id": "w28",
+          "text": "by",
+          "start": 10.45,
+          "end": 10.5
+        },
+        {
+          "id": "w29",
+          "text": "a",
+          "start": 10.5,
+          "end": 10.62
+        },
+        {
+          "id": "w30",
+          "text": "Gmail",
+          "start": 10.62,
+          "end": 11
+        },
+        {
+          "id": "w31",
+          "text": "message",
+          "start": 11.14,
+          "end": 11.5
+        },
+        {
+          "id": "w32",
+          "text": "with",
+          "start": 11.58,
+          "end": 11.86
+        },
+        {
+          "id": "w33",
+          "text": "the",
+          "start": 11.87,
+          "end": 12.09
+        },
+        {
+          "id": "w34",
+          "text": "video,",
+          "start": 12.09,
+          "end": 12.7
+        },
+        {
+          "id": "w35",
+          "text": "a",
+          "start": 12.74,
+          "end": 12.76
+        },
+        {
+          "id": "w36",
+          "text": "calendar",
+          "start": 12.76,
+          "end": 13.3
+        },
+        {
+          "id": "w37",
+          "text": "meeting,",
+          "start": 13.3,
+          "end": 13.92
+        },
+        {
+          "id": "w38",
+          "text": "and",
+          "start": 13.92,
+          "end": 14.16
+        },
+        {
+          "id": "w39",
+          "text": "a",
+          "start": 14.16,
+          "end": 14.23
+        },
+        {
+          "id": "w40",
+          "text": "HubSpot",
+          "start": 14.23,
+          "end": 14.6
+        },
+        {
+          "id": "w41",
+          "text": "update.",
+          "start": 15.21,
+          "end": 15.54
+        }
+      ]
+    },
+    {
+      "id": "06-result",
+      "path": "assets/voice/06-result.wav",
+      "duration_s": 16.363,
+      "words": [
+        {
+          "id": "w0",
+          "text": "The",
+          "start": 0.05,
+          "end": 0.21
+        },
+        {
+          "id": "w1",
+          "text": "result,",
+          "start": 0.21,
+          "end": 0.78
+        },
+        {
+          "id": "w2",
+          "text": "a",
+          "start": 0.78,
+          "end": 0.96
+        },
+        {
+          "id": "w3",
+          "text": "relevant",
+          "start": 0.96,
+          "end": 1.43
+        },
+        {
+          "id": "w4",
+          "text": "demo",
+          "start": 1.43,
+          "end": 1.72
+        },
+        {
+          "id": "w5",
+          "text": "for",
+          "start": 1.72,
+          "end": 1.88
+        },
+        {
+          "id": "w6",
+          "text": "the",
+          "start": 1.97,
+          "end": 2.11
+        },
+        {
+          "id": "w7",
+          "text": "buyer,",
+          "start": 2.14,
+          "end": 2.53
+        },
+        {
+          "id": "w8",
+          "text": "a",
+          "start": 2.72,
+          "end": 2.77
+        },
+        {
+          "id": "w9",
+          "text": "clear",
+          "start": 2.84,
+          "end": 3.25
+        },
+        {
+          "id": "w10",
+          "text": "next",
+          "start": 3.25,
+          "end": 3.62
+        },
+        {
+          "id": "w11",
+          "text": "step,",
+          "start": 3.62,
+          "end": 4.02
+        },
+        {
+          "id": "w12",
+          "text": "and",
+          "start": 4.07,
+          "end": 4.22
+        },
+        {
+          "id": "w13",
+          "text": "less",
+          "start": 4.22,
+          "end": 4.48
+        },
+        {
+          "id": "w14",
+          "text": "repetitive",
+          "start": 4.48,
+          "end": 5.18
+        },
+        {
+          "id": "w15",
+          "text": "preparation",
+          "start": 5.18,
+          "end": 5.9
+        },
+        {
+          "id": "w16",
+          "text": "for",
+          "start": 5.99,
+          "end": 6.13
+        },
+        {
+          "id": "w17",
+          "text": "the",
+          "start": 6.16,
+          "end": 6.34
+        },
+        {
+          "id": "w18",
+          "text": "sales",
+          "start": 6.34,
+          "end": 6.54
+        },
+        {
+          "id": "w19",
+          "text": "team.",
+          "start": 6.74,
+          "end": 7.22
+        },
+        {
+          "id": "w20",
+          "text": "This",
+          "start": 7.27,
+          "end": 7.46
+        },
+        {
+          "id": "w21",
+          "text": "prototype",
+          "start": 7.5,
+          "end": 7.79
+        },
+        {
+          "id": "w22",
+          "text": "uses",
+          "start": 8.18,
+          "end": 8.47
+        },
+        {
+          "id": "w23",
+          "text": "saved",
+          "start": 8.47,
+          "end": 8.84
+        },
+        {
+          "id": "w24",
+          "text": "customer",
+          "start": 8.84,
+          "end": 9.46
+        },
+        {
+          "id": "w25",
+          "text": "and",
+          "start": 9.46,
+          "end": 9.62
+        },
+        {
+          "id": "w26",
+          "text": "product",
+          "start": 9.62,
+          "end": 9.98
+        },
+        {
+          "id": "w27",
+          "text": "inputs,",
+          "start": 10.06,
+          "end": 10.8
+        },
+        {
+          "id": "w28",
+          "text": "real",
+          "start": 10.85,
+          "end": 11.04
+        },
+        {
+          "id": "w29",
+          "text": "product",
+          "start": 11.07,
+          "end": 11.37
+        },
+        {
+          "id": "w30",
+          "text": "captures,",
+          "start": 11.76,
+          "end": 12.29
+        },
+        {
+          "id": "w31",
+          "text": "and",
+          "start": 12.3,
+          "end": 12.52
+        },
+        {
+          "id": "w32",
+          "text": "live",
+          "start": 12.52,
+          "end": 12.82
+        },
+        {
+          "id": "w33",
+          "text": "follow-up",
+          "start": 12.82,
+          "end": 13.49
+        },
+        {
+          "id": "w34",
+          "text": "integrations.",
+          "start": 13.52,
+          "end": 14.52
+        },
+        {
+          "id": "w35",
+          "text": "12",
+          "start": 14.71,
+          "end": 15.23
+        },
+        {
+          "id": "w36",
+          "text": "policy",
+          "start": 15.62,
+          "end": 16.06
+        },
+        {
+          "id": "w37",
+          "text": "tests",
+          "start": 16.06,
+          "end": 16.64
+        },
+        {
+          "id": "w38",
+          "text": "pass.",
+          "start": 16.64,
+          "end": 17.42
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 95.424
+}

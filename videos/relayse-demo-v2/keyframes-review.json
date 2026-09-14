@@ -1,0 +1,1062 @@
+{
+  "project": "relayse-demo-v2",
+  "runtime": "all",
+  "compositions": [
+    {
+      "composition": "index.html",
+      "source": "index.html",
+      "tweens": [],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    },
+    {
+      "composition": "s01",
+      "source": "compositions/s01.html",
+      "tweens": [
+        {
+          "id": "#s01-line-fromTo-0-scale",
+          "target": "#s01-line",
+          "method": "fromTo",
+          "group": "scale",
+          "start": 0,
+          "duration": 0.65,
+          "end": 0.65,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0,
+              "properties": {
+                "scaleX": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.65,
+              "properties": {
+                "scaleX": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s01 .title-fromTo-50",
+          "target": "#s01 .title",
+          "method": "fromTo",
+          "start": 0.05,
+          "duration": 0.55,
+          "end": 0.6,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.05,
+              "properties": {
+                "y": 20,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.6,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 20
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s01-task1-fromTo-2600",
+          "target": "#s01-task1",
+          "method": "fromTo",
+          "start": 2.6,
+          "duration": 0.5,
+          "end": 3.1,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 2.6,
+              "properties": {
+                "x": -35,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 3.1,
+              "properties": {
+                "x": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": -35,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s01-task2-fromTo-4800",
+          "target": "#s01-task2",
+          "method": "fromTo",
+          "start": 4.8,
+          "duration": 0.5,
+          "end": 5.3,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 4.8,
+              "properties": {
+                "x": -35,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 5.3,
+              "properties": {
+                "x": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": -35,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s01-task3-fromTo-7000",
+          "target": "#s01-task3",
+          "method": "fromTo",
+          "start": 7,
+          "duration": 0.5,
+          "end": 7.5,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 7,
+              "properties": {
+                "x": -35,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 7.5,
+              "properties": {
+                "x": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": -35,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s01-risk-fromTo-8800",
+          "target": "#s01-risk",
+          "method": "fromTo",
+          "start": 8.8,
+          "duration": 0.6,
+          "end": 9.4,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 8.8,
+              "properties": {
+                "scale": 0.94,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 9.4,
+              "properties": {
+                "scale": 1,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": null
+        }
+      ],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    },
+    {
+      "composition": "s02",
+      "source": "compositions/s02.html",
+      "tweens": [
+        {
+          "id": "#s02-line-fromTo-0-scale",
+          "target": "#s02-line",
+          "method": "fromTo",
+          "group": "scale",
+          "start": 0,
+          "duration": 0.65,
+          "end": 0.65,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0,
+              "properties": {
+                "scaleX": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.65,
+              "properties": {
+                "scaleX": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s02 .title-fromTo-50",
+          "target": "#s02 .title",
+          "method": "fromTo",
+          "start": 0.05,
+          "duration": 0.55,
+          "end": 0.6,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.05,
+              "properties": {
+                "y": 20,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.6,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 20
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s02-home-fromTo-450",
+          "target": "#s02-home",
+          "method": "fromTo",
+          "start": 0.45,
+          "duration": 0.7,
+          "end": 1.15,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.45,
+              "properties": {
+                "x": 65,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 1.15,
+              "properties": {
+                "x": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 65,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s02-inputs-fromTo-3200",
+          "target": "#s02-inputs",
+          "method": "fromTo",
+          "start": 3.2,
+          "duration": 0.5,
+          "end": 3.7,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 3.2,
+              "properties": {
+                "y": 25,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 3.7,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 25
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    },
+    {
+      "composition": "s03",
+      "source": "compositions/s03.html",
+      "tweens": [
+        {
+          "id": "#s03-line-fromTo-0-scale",
+          "target": "#s03-line",
+          "method": "fromTo",
+          "group": "scale",
+          "start": 0,
+          "duration": 0.65,
+          "end": 0.65,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0,
+              "properties": {
+                "scaleX": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.65,
+              "properties": {
+                "scaleX": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s03 .title-fromTo-50",
+          "target": "#s03 .title",
+          "method": "fromTo",
+          "start": 0.05,
+          "duration": 0.55,
+          "end": 0.6,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.05,
+              "properties": {
+                "y": 20,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.6,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 20
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s03-block-fromTo-1000",
+          "target": "#s03-block",
+          "method": "fromTo",
+          "start": 1,
+          "duration": 0.5,
+          "end": 1.5,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 1,
+              "properties": {
+                "y": 30,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 1.5,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 30
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s03-allow-fromTo-8200",
+          "target": "#s03-allow",
+          "method": "fromTo",
+          "start": 8.2,
+          "duration": 0.5,
+          "end": 8.7,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 8.2,
+              "properties": {
+                "x": -40,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 8.7,
+              "properties": {
+                "x": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": -40,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s03-policy-fromTo-10400-visual",
+          "target": "#s03-policy",
+          "method": "fromTo",
+          "group": "visual",
+          "start": 10.4,
+          "duration": 0.5,
+          "end": 10.9,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 10.4,
+              "properties": {
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 10.9,
+              "properties": {
+                "opacity": 1
+              }
+            }
+          ],
+          "path": null
+        }
+      ],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    },
+    {
+      "composition": "s04",
+      "source": "compositions/s04.html",
+      "tweens": [
+        {
+          "id": "#s04-line-fromTo-0-scale",
+          "target": "#s04-line",
+          "method": "fromTo",
+          "group": "scale",
+          "start": 0,
+          "duration": 0.65,
+          "end": 0.65,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0,
+              "properties": {
+                "scaleX": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.65,
+              "properties": {
+                "scaleX": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s04 .title-fromTo-50",
+          "target": "#s04 .title",
+          "method": "fromTo",
+          "start": 0.05,
+          "duration": 0.55,
+          "end": 0.6,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.05,
+              "properties": {
+                "y": 20,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.6,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 20
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s04 .top-set-5300-visual",
+          "target": "#s04 .top",
+          "method": "set",
+          "group": "visual",
+          "start": 5.3,
+          "duration": 0,
+          "end": 5.3,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 5.3,
+              "properties": {
+                "opacity": 1
+              }
+            },
+            {
+              "pct": 100,
+              "time": 5.3,
+              "properties": {
+                "opacity": 0
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s04-line-set-5300-visual",
+          "target": "#s04-line",
+          "method": "set",
+          "group": "visual",
+          "start": 5.3,
+          "duration": 0,
+          "end": 5.3,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 5.3,
+              "properties": {
+                "opacity": 1
+              }
+            },
+            {
+              "pct": 100,
+              "time": 5.3,
+              "properties": {
+                "opacity": 0
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s04-plan-to-5300-visual",
+          "target": "#s04-plan",
+          "method": "to",
+          "group": "visual",
+          "start": 5.3,
+          "duration": 0.2,
+          "end": 5.5,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 5.3,
+              "properties": {
+                "opacity": 1
+              }
+            },
+            {
+              "pct": 100,
+              "time": 5.5,
+              "properties": {
+                "opacity": 0
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s04-plan-set-5500-visual",
+          "target": "#s04-plan",
+          "method": "set",
+          "group": "visual",
+          "start": 5.5,
+          "duration": 0,
+          "end": 5.5,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 5.5,
+              "properties": {
+                "opacity": 1
+              }
+            },
+            {
+              "pct": 100,
+              "time": 5.5,
+              "properties": {
+                "opacity": 0
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s04-video-wrap-fromTo-5500-visual",
+          "target": "#s04-video-wrap",
+          "method": "fromTo",
+          "group": "visual",
+          "start": 5.5,
+          "duration": 0.3,
+          "end": 5.8,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 5.5,
+              "properties": {
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 5.8,
+              "properties": {
+                "opacity": 1
+              }
+            }
+          ],
+          "path": null
+        }
+      ],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    },
+    {
+      "composition": "s05",
+      "source": "compositions/s05.html",
+      "tweens": [
+        {
+          "id": "#s05-line-fromTo-0-scale",
+          "target": "#s05-line",
+          "method": "fromTo",
+          "group": "scale",
+          "start": 0,
+          "duration": 0.65,
+          "end": 0.65,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0,
+              "properties": {
+                "scaleX": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.65,
+              "properties": {
+                "scaleX": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s05 .title-fromTo-50",
+          "target": "#s05 .title",
+          "method": "fromTo",
+          "start": 0.05,
+          "duration": 0.55,
+          "end": 0.6,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.05,
+              "properties": {
+                "y": 20,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.6,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 20
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s05-before-to-7300-visual",
+          "target": "#s05-before",
+          "method": "to",
+          "group": "visual",
+          "start": 7.3,
+          "duration": 0.25,
+          "end": 7.55,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 7.3,
+              "properties": {
+                "opacity": 1
+              }
+            },
+            {
+              "pct": 100,
+              "time": 7.55,
+              "properties": {
+                "opacity": 0
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s05-after-fromTo-7650",
+          "target": "#s05-after",
+          "method": "fromTo",
+          "start": 7.65,
+          "duration": 0.5,
+          "end": 8.15,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 7.65,
+              "properties": {
+                "y": 22,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 8.15,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 22
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    },
+    {
+      "composition": "s06",
+      "source": "compositions/s06.html",
+      "tweens": [
+        {
+          "id": "#s06-line-fromTo-0-scale",
+          "target": "#s06-line",
+          "method": "fromTo",
+          "group": "scale",
+          "start": 0,
+          "duration": 0.65,
+          "end": 0.65,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0,
+              "properties": {
+                "scaleX": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.65,
+              "properties": {
+                "scaleX": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s06 .title-fromTo-50",
+          "target": "#s06 .title",
+          "method": "fromTo",
+          "start": 0.05,
+          "duration": 0.55,
+          "end": 0.6,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 0.05,
+              "properties": {
+                "y": 20,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 0.6,
+              "properties": {
+                "y": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": 0,
+              "y": 20
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s06-outcomes-fromTo-1800",
+          "target": "#s06-outcomes",
+          "method": "fromTo",
+          "start": 1.8,
+          "duration": 0.5,
+          "end": 2.3,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 1.8,
+              "properties": {
+                "x": -30,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 2.3,
+              "properties": {
+                "x": 0,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": [
+            {
+              "x": -30,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "#s06-scope-fromTo-7500-visual",
+          "target": "#s06-scope",
+          "method": "fromTo",
+          "group": "visual",
+          "start": 7.5,
+          "duration": 0.5,
+          "end": 8,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 7.5,
+              "properties": {
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 8,
+              "properties": {
+                "opacity": 1
+              }
+            }
+          ],
+          "path": null
+        },
+        {
+          "id": "#s06-proof-fromTo-12500",
+          "target": "#s06-proof",
+          "method": "fromTo",
+          "start": 12.5,
+          "duration": 0.6,
+          "end": 13.1,
+          "shape": "flat",
+          "keyframes": [
+            {
+              "pct": 0,
+              "time": 12.5,
+              "properties": {
+                "scale": 0.94,
+                "opacity": 0
+              }
+            },
+            {
+              "pct": 100,
+              "time": 13.1,
+              "properties": {
+                "scale": 1,
+                "opacity": 1
+              }
+            }
+          ],
+          "path": null
+        }
+      ],
+      "traces": [],
+      "cssKeyframes": [],
+      "anime": []
+    }
+  ],
+  "_meta": {
+    "version": "0.8.37",
+    "latestVersion": "0.8.37",
+    "updateAvailable": false
+  }
+}

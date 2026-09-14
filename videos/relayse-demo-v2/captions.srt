@@ -1,0 +1,139 @@
+1
+00:00:00,228 --> 00:00:02,644
+A buyer finishes a discovery call.
+
+2
+00:00:02,672 --> 00:00:05,450
+Your sales engineer now has to check product claims,
+
+3
+00:00:05,506 --> 00:00:09,126
+prepare a relevant demo, and coordinate the follow-up.
+
+4
+00:00:09,154 --> 00:00:12,006
+That means repetitive work and a risk, promising something
+
+5
+00:00:12,006 --> 00:00:13,256
+the product cannot do.
+
+6
+00:00:14,104 --> 00:00:17,566
+RelaySE is an AI assistant for technical sales
+
+7
+00:00:17,566 --> 00:00:18,181
+teams.
+
+8
+00:00:18,218 --> 00:00:21,496
+It turns a call transcript, customer context, and product
+
+9
+00:00:21,680 --> 00:00:24,581
+capability data into a verified demo plan.
+
+10
+00:00:24,701 --> 00:00:27,841
+Here, Northstar Labs wants to see how incoming requests
+
+11
+00:00:27,841 --> 00:00:29,099
+become planned work.
+
+12
+00:00:29,895 --> 00:00:32,935
+The buyer also asks about SAP integration.
+
+13
+00:00:32,963 --> 00:00:35,526
+The product data says it is on the roadmap.
+
+14
+00:00:35,553 --> 00:00:37,473
+Relay blocks it from the demo.
+
+15
+00:00:37,501 --> 00:00:39,512
+Supported workflows are included.
+
+16
+00:00:39,540 --> 00:00:42,139
+Unknown capabilities go to human review.
+
+17
+00:00:42,222 --> 00:00:44,721
+Every decision links back to the buyer's words and
+
+18
+00:00:44,721 --> 00:00:45,768
+product evidence.
+
+19
+00:00:46,579 --> 00:00:50,573
+The plan focuses on three supported workflows, request intake,
+
+20
+00:00:50,573 --> 00:00:53,264
+sprint planning, and linked documentation.
+
+21
+00:00:53,410 --> 00:00:57,037
+Real product screenshots become this personalized walkthrough.
+
+22
+00:00:57,083 --> 00:00:59,526
+The buyer gets a concrete answer to their question
+
+23
+00:00:59,581 --> 00:01:01,427
+with unsupported claims left out.
+
+24
+00:01:02,246 --> 00:01:04,498
+The follow-up then waits for a human.
+
+25
+00:01:04,543 --> 00:01:06,942
+Relay posts a review request to Slack.
+
+26
+00:01:06,988 --> 00:01:09,387
+The sales engineer approves in the app.
+
+27
+00:01:09,433 --> 00:01:11,960
+In this recorded run, approval was followed by a
+
+28
+00:01:11,960 --> 00:01:15,213
+Gmail message with the video, a calendar meeting, and
+
+29
+00:01:15,213 --> 00:01:16,481
+a HubSpot update.
+
+30
+00:01:17,276 --> 00:01:19,642
+The result, a relevant demo for the buyer, a
+
+31
+00:01:19,703 --> 00:01:22,747
+clear next step, and less repetitive preparation for the
+
+32
+00:01:22,747 --> 00:01:23,513
+sales team.
+
+33
+00:01:23,556 --> 00:01:26,835
+This prototype uses saved customer and product inputs, real
+
+34
+00:01:26,861 --> 00:01:29,862
+product captures, and live follow-up integrations.
+
+35
+00:01:30,027 --> 00:01:32,384
+12 policy tests pass.

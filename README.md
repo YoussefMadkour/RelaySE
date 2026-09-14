@@ -240,15 +240,17 @@ npm run eval
 
 <p align="center">
   <a href="docs/demo-video.mp4">
-    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:53 demo video" width="560">
+    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:33 RelaySE demo" width="560">
   </a>
 </p>
 
-**[▶ Watch the demo](docs/demo-video.mp4)** — 1:53, narrated, built with HyperFrames from real screenshots, real narration (local TTS), and a real clip of the actual generated walkthrough (source project: `videos/hackathon-demo/`).
+**[▶ Watch the demo](docs/demo-video.mp4)** — 1:33, 1080p, narrated and captioned. The video explains the post-discovery problem, introduces RelaySE, and follows Northstar Labs from capability verification to a personalized walkthrough and human-approved follow-up.
 
-The video opens by naming the actual problem — a discovery call surfaces exactly what a buyer needs and what would kill the deal, and what happens next is normally manual — then grounds it in a real quote from the Northstar Labs transcript, before walking through the orchestrator, verification, live capture, the generated walkthrough, human-gated approval, and the reliability results.
+The screenshots show actual saved application states: the SAP roadmap decision, a supported workflow, the demo plan, approval controls, and recorded Gmail/Calendar/HubSpot results. Pending and approved screens are labeled as recorded states. The prototype uses saved CRM/product inputs, real product captures, and live outbound integrations; the walkthrough is rendered separately from the application run.
 
-Note: the file is too large for GitHub's inline blob preview, so clicking the link/thumbnail above opens a page that says it can't display the file — click **"View raw"** on that page to download it and play it locally.
+[Read the narration](videos/relayse-demo-v2/SCRIPT.md) · [Download subtitles](docs/demo-video.srt) · [Editable HyperFrames project](videos/relayse-demo-v2/)
+
+If GitHub does not offer playback, use **View raw** to download the MP4 and play it locally.
 
 ---
 
