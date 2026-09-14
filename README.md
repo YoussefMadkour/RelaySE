@@ -101,6 +101,8 @@ Every one of these is wired to the real service, not a mock — see `setup/*.md`
 
 ## 5. Architecture
 
+![One orchestrator, a coordinated follow-up across six apps](docs/orchestrator-slide.png)
+
 ```text
 Discovery transcript
         |
