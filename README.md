@@ -248,11 +248,11 @@ npm run eval
 
 <p align="center">
   <a href="docs/demo-video.mp4">
-    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:33 RelaySE demo" width="560">
+    <img src="docs/demo-video-thumb.jpg" alt="Watch the 1:53 RelaySE demo" width="560">
   </a>
 </p>
 
-**[▶ Watch the demo](docs/demo-video.mp4)** — 1:33, 1080p, narrated and captioned. The video explains the post-discovery problem, introduces RelaySE, and follows Northstar Labs from capability verification to a personalized walkthrough and human-approved follow-up.
+**[▶ Watch the demo](docs/demo-video.mp4)** — 1:53, 1080p, narrated and captioned. The video explains the post-discovery problem, introduces RelaySE, explains how the orchestrator coordinates its apps, and follows Northstar Labs from capability verification to a personalized walkthrough and human-approved follow-up.
 
 The screenshots show actual saved application states: the SAP roadmap decision, a supported workflow, the demo plan, approval controls, and recorded Gmail/Calendar/HubSpot results. Pending and approved screens are labeled as recorded states. The prototype uses saved CRM/product inputs, real product captures, and live outbound integrations; the walkthrough is rendered separately from the application run.
 

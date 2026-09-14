@@ -47,3 +47,11 @@
 - beat: Why it matters
 - motion: dynamic-content-sequencing; GSAP explicit transform/opacity entries.
 - evidence: Measured policy tests and implementation scope
+
+## Added frame — Orchestrator and apps
+- status: animated
+- src: compositions/architecture.html
+- start: 29.667
+- duration: 19.8
+- motion: svg-path-draw; constellation-hub connector reveal adapted to the app workflow
+- beat: Saved inputs → RelaySE interpretation, verification, planning → Plane captures / HyperFrames render → Slack review and approval in RelaySE → Gmail / Calendar / HubSpot.

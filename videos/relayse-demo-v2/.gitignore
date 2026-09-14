@@ -9,3 +9,6 @@ renders/
 .hyperframes/
 .thumbnails/
 .waveform-cache/
+
+!architecture_audio_request.json
+!architecture_audio_meta.json
